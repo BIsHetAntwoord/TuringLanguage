@@ -1,0 +1,43 @@
+# depslib dependency file v1.0
+1553511549 source:d:\bestanden\data\codes\programeren\c++\projecten\turinglanguage\main.cpp
+	<iostream>
+
+1553513387 source:d:\bestanden\data\codes\programeren\c++\projecten\turinglanguage\parser\parser.y
+	"parser/parser_info.hpp"
+	"intcode/treenode.hpp"
+	<iostream>
+
+1552056576 d:\bestanden\data\codes\programeren\c++\projecten\turinglanguage\parser\parser_info.hpp
+	<string>
+	<cstdint>
+
+1553513374 d:\bestanden\data\codes\programeren\c++\projecten\turinglanguage\intcode\treenode.hpp
+	"intcode/datatype.hpp"
+
+1553512816 d:\bestanden\data\codes\programeren\c++\projecten\turinglanguage\intcode\datatype.hpp
+	<memory>
+
+1553511701 source:d:\bestanden\data\codes\programeren\c++\projecten\turinglanguage\parser\lexer.l
+	"parser/parser_info.hpp"
+	"parser/parser.parser.hh"
+	<cstring>
+
+1553513388 d:\bestanden\data\codes\programeren\c++\projecten\turinglanguage\parser\parser.parser.hh
+
+1550150028 source:d:\bestanden\data\codes\programeren\c++\projecten\turinglanguage\parser\parser.cpp
+	"parser/parser.hpp"
+	"error/exceptions.hpp"
+	"parser/parser_info.hpp"
+
+1549884349 d:\bestanden\data\codes\programeren\c++\projecten\turinglanguage\parser\parser.hpp
+	<string>
+	<cstdio>
+
+1553513721 d:\bestanden\data\codes\programeren\c++\projecten\turinglanguage\error\exceptions.hpp
+	<stdexcept>
+	"error/exceptions.inl"
+
+1553513745 d:\bestanden\data\codes\programeren\c++\projecten\turinglanguage\error\exceptions.inl
+	<sstream>
+	<utility>
+

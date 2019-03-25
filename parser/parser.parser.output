@@ -1,0 +1,349 @@
+Terminals unused in grammar
+
+   "u32"
+   "-"
+   "*"
+   "/"
+   "%"
+   "&"
+   "|"
+   "^"
+   "~"
+   ".."
+   "string"
+   "error token"
+   UPLUS
+   UMIN
+   TRY
+
+
+Grammar
+
+    0 $accept: root $end
+
+    1 root: statement_list
+
+    2 statement_list: statement_list statement
+    3               | %empty
+
+    4 statement: ";"
+    5          | expression ";"
+
+    6 expression: lvalue
+    7           | calc_expression
+
+    8 calc_expression: rvalue
+    9                | expression "=" expression
+   10                | expression "+" expression
+   11                | "(" calc_expression ")"
+
+   12 lvalue: "identifier"
+   13       | "(" lvalue ")"
+
+   14 rvalue: constant
+
+   15 constant: "integer"
+   16         | "true"
+   17         | "false"
+
+
+Terminals, with rules where they appear
+
+$end (0) 0
+error (256)
+"false" (258) 17
+"true" (259) 16
+"u32" (260)
+";" (261) 4 5
+"=" (262) 9
+"+" (263) 10
+"-" (264)
+"*" (265)
+"/" (266)
+"%" (267)
+"&" (268)
+"|" (269)
+"^" (270)
+"~" (271)
+".." (272)
+"(" (273) 11 13
+")" (274) 11 13
+"integer" <integer> (275) 15
+"identifier" <str> (276) 12
+"string" <str> (277)
+"error token" (278)
+UPLUS (279)
+UMIN (280)
+TRY (281)
+
+
+Nonterminals, with rules where they appear
+
+$accept (27)
+    on left: 0
+root (28)
+    on left: 1, on right: 0
+statement_list <node> (29)
+    on left: 2 3, on right: 1 2
+statement <node> (30)
+    on left: 4 5, on right: 2
+expression <node> (31)
+    on left: 6 7, on right: 5 9 10
+calc_expression <node> (32)
+    on left: 8 9 10 11, on right: 7 11
+lvalue <node> (33)
+    on left: 12 13, on right: 6 13
+rvalue <node> (34)
+    on left: 14, on right: 8
+constant <node> (35)
+    on left: 15 16 17, on right: 14
+
+
+State 0
+
+    0 $accept: . root $end
+
+    $default  reduce using rule 3 (statement_list)
+
+    root            go to state 1
+    statement_list  go to state 2
+
+
+State 1
+
+    0 $accept: root . $end
+
+    $end  shift, and go to state 3
+
+
+State 2
+
+    1 root: statement_list .
+    2 statement_list: statement_list . statement
+
+    "false"       shift, and go to state 4
+    "true"        shift, and go to state 5
+    ";"           shift, and go to state 6
+    "("           shift, and go to state 7
+    "integer"     shift, and go to state 8
+    "identifier"  shift, and go to state 9
+
+    $default  reduce using rule 1 (root)
+
+    statement        go to state 10
+    expression       go to state 11
+    calc_expression  go to state 12
+    lvalue           go to state 13
+    rvalue           go to state 14
+    constant         go to state 15
+
+
+State 3
+
+    0 $accept: root $end .
+
+    $default  accept
+
+
+State 4
+
+   17 constant: "false" .
+
+    $default  reduce using rule 17 (constant)
+
+
+State 5
+
+   16 constant: "true" .
+
+    $default  reduce using rule 16 (constant)
+
+
+State 6
+
+    4 statement: ";" .
+
+    $default  reduce using rule 4 (statement)
+
+
+State 7
+
+   11 calc_expression: "(" . calc_expression ")"
+   13 lvalue: "(" . lvalue ")"
+
+    "false"       shift, and go to state 4
+    "true"        shift, and go to state 5
+    "("           shift, and go to state 7
+    "integer"     shift, and go to state 8
+    "identifier"  shift, and go to state 9
+
+    expression       go to state 16
+    calc_expression  go to state 17
+    lvalue           go to state 18
+    rvalue           go to state 14
+    constant         go to state 15
+
+
+State 8
+
+   15 constant: "integer" .
+
+    $default  reduce using rule 15 (constant)
+
+
+State 9
+
+   12 lvalue: "identifier" .
+
+    $default  reduce using rule 12 (lvalue)
+
+
+State 10
+
+    2 statement_list: statement_list statement .
+
+    $default  reduce using rule 2 (statement_list)
+
+
+State 11
+
+    5 statement: expression . ";"
+    9 calc_expression: expression . "=" expression
+   10                | expression . "+" expression
+
+    ";"  shift, and go to state 19
+    "="  shift, and go to state 20
+    "+"  shift, and go to state 21
+
+
+State 12
+
+    7 expression: calc_expression .
+
+    $default  reduce using rule 7 (expression)
+
+
+State 13
+
+    6 expression: lvalue .
+
+    $default  reduce using rule 6 (expression)
+
+
+State 14
+
+    8 calc_expression: rvalue .
+
+    $default  reduce using rule 8 (calc_expression)
+
+
+State 15
+
+   14 rvalue: constant .
+
+    $default  reduce using rule 14 (rvalue)
+
+
+State 16
+
+    9 calc_expression: expression . "=" expression
+   10                | expression . "+" expression
+
+    "="  shift, and go to state 20
+    "+"  shift, and go to state 21
+
+
+State 17
+
+    7 expression: calc_expression .
+   11 calc_expression: "(" calc_expression . ")"
+
+    ")"  shift, and go to state 22
+
+    $default  reduce using rule 7 (expression)
+
+
+State 18
+
+    6 expression: lvalue .
+   13 lvalue: "(" lvalue . ")"
+
+    ")"  shift, and go to state 23
+
+    $default  reduce using rule 6 (expression)
+
+
+State 19
+
+    5 statement: expression ";" .
+
+    $default  reduce using rule 5 (statement)
+
+
+State 20
+
+    9 calc_expression: expression "=" . expression
+
+    "false"       shift, and go to state 4
+    "true"        shift, and go to state 5
+    "("           shift, and go to state 7
+    "integer"     shift, and go to state 8
+    "identifier"  shift, and go to state 9
+
+    expression       go to state 24
+    calc_expression  go to state 12
+    lvalue           go to state 13
+    rvalue           go to state 14
+    constant         go to state 15
+
+
+State 21
+
+   10 calc_expression: expression "+" . expression
+
+    "false"       shift, and go to state 4
+    "true"        shift, and go to state 5
+    "("           shift, and go to state 7
+    "integer"     shift, and go to state 8
+    "identifier"  shift, and go to state 9
+
+    expression       go to state 25
+    calc_expression  go to state 12
+    lvalue           go to state 13
+    rvalue           go to state 14
+    constant         go to state 15
+
+
+State 22
+
+   11 calc_expression: "(" calc_expression ")" .
+
+    $default  reduce using rule 11 (calc_expression)
+
+
+State 23
+
+   13 lvalue: "(" lvalue ")" .
+
+    $default  reduce using rule 13 (lvalue)
+
+
+State 24
+
+    9 calc_expression: expression . "=" expression
+    9                | expression "=" expression .
+   10                | expression . "+" expression
+
+    "="  shift, and go to state 20
+    "+"  shift, and go to state 21
+
+    $default  reduce using rule 9 (calc_expression)
+
+
+State 25
+
+    9 calc_expression: expression . "=" expression
+   10                | expression . "+" expression
+   10                | expression "+" expression .
+
+    $default  reduce using rule 10 (calc_expression)
