@@ -5,6 +5,7 @@
 #include <cstdint>
 
 class TreeNode;
+class DataType;
 
 union YYSTYPE
 {
@@ -12,6 +13,7 @@ union YYSTYPE
     double flt;
     char* str;
     TreeNode* node;
+    DataType* type;
 };
 
 #define PARSER_YYSTYPE_IS_DECLARED 1

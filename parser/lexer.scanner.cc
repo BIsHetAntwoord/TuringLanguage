@@ -558,8 +558,8 @@ static void yynoreturn yy_fatal_error ( const char* msg , yyscan_t yyscanner );
 	yyg->yy_hold_char = *yy_cp; \
 	*yy_cp = '\0'; \
 	yyg->yy_c_buf_p = yy_cp;
-#define YY_NUM_RULES 42
-#define YY_END_OF_BUFFER 43
+#define YY_NUM_RULES 45
+#define YY_END_OF_BUFFER 46
 /* This struct is not used in this scanner,
    but its presence is necessary. */
 struct yy_trans_info
@@ -567,15 +567,16 @@ struct yy_trans_info
 	flex_int32_t yy_verify;
 	flex_int32_t yy_nxt;
 	};
-static const flex_int16_t yy_accept[69] =
+static const flex_int16_t yy_accept[75] =
     {   0,
-        0,    0,    0,    0,   43,   26,   24,   25,   24,   22,
-        9,   10,   16,   17,    7,    5,    6,   26,    8,   21,
-       21,   15,    4,   23,   12,   23,   23,   23,   11,   13,
-       41,   40,   40,   39,   41,   25,   14,   20,   21,    0,
-        0,   23,   23,   23,   23,   40,   28,   27,   37,   29,
-       30,   31,   32,   33,   34,   35,   36,    0,   18,   19,
-       23,   23,    3,   38,   23,    2,    1,    0
+        0,    0,    0,    0,   46,   29,   27,   28,   27,   25,
+       10,   11,   17,   18,    8,    6,    7,   29,    9,   24,
+       24,   16,    5,   26,   13,   26,   26,   26,   26,   19,
+       12,   20,   14,   44,   43,   43,   42,   44,   28,   15,
+       23,   24,    0,    0,   26,   26,   26,   26,   26,   43,
+       31,   30,   40,   32,   33,   34,   35,   36,   37,   38,
+       39,    0,   21,   22,   26,   26,    3,   26,   41,   26,
+        2,    4,    1,    0
     } ;
 
 static const YY_CHAR yy_ec[256] =
@@ -589,11 +590,11 @@ static const YY_CHAR yy_ec[256] =
        23,    1,    1,    1,   24,   24,   24,   24,   24,   24,
        25,   25,   25,   25,   25,   25,   25,   25,   25,   25,
        25,   25,   25,   25,   25,   25,   25,   25,   25,   25,
-        1,   26,    1,   27,   25,    1,   28,   29,   24,   24,
+        1,   26,    1,   27,   25,    1,   28,   29,   24,   30,
 
-       30,   31,   25,   25,   25,   25,   25,   32,   25,   33,
-       25,   25,   25,   34,   35,   36,   37,   38,   25,   39,
-       25,   25,    1,   40,    1,   41,    1,    1,    1,    1,
+       31,   32,   25,   25,   33,   25,   25,   34,   25,   35,
+       36,   25,   25,   37,   38,   39,   40,   41,   25,   42,
+       25,   25,   43,   44,   45,   46,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
@@ -610,81 +611,83 @@ static const YY_CHAR yy_ec[256] =
         1,    1,    1,    1,    1
     } ;
 
-static const YY_CHAR yy_meta[42] =
+static const YY_CHAR yy_meta[47] =
     {   0,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    2,    2,    2,    2,    2,
         2,    1,    1,    3,    4,    1,    1,    3,    2,    3,
-        3,    4,    4,    4,    4,    4,    4,    4,    5,    1,
-        1
+        3,    3,    4,    4,    4,    4,    4,    4,    4,    4,
+        4,    5,    1,    1,    1,    1
     } ;
 
-static const flex_int16_t yy_base[74] =
+static const flex_int16_t yy_base[80] =
     {   0,
-        0,    0,   39,   42,  123,  124,  124,  124,  119,  124,
-      124,  124,  124,  124,  124,  124,  124,  107,  124,   27,
-       33,  124,  124,    0,  124,   83,   76,   82,  124,  124,
-      124,  124,   96,  124,   64,  124,  124,   41,   57,   47,
-        0,    0,   64,   57,   73,  124,  124,  124,   69,  124,
-      124,  124,  124,  124,  124,  124,  124,    0,   54,    0,
-       44,   37,    0,    0,   25,    0,    0,  124,  103,  107,
-      111,  115,  117
+        0,    0,   44,   47,  131,  132,  132,  132,  127,  132,
+      132,  132,  132,  132,  132,  132,  132,  106,  132,   32,
+       38,  132,  132,    0,  132,   91,   73,   89,   70,  132,
+      132,  132,  132,  132,  132,  101,  132,   70,  132,  132,
+       46,   63,   52,    0,    0,   69,   61,   82,   64,  132,
+      132,  132,   75,  132,  132,  132,  132,  132,  132,  132,
+      132,    0,   55,    0,   47,   46,    0,   46,    0,   29,
+        0,    0,    0,  132,  112,  116,  120,  124,  126
     } ;
 
-static const flex_int16_t yy_def[74] =
+static const flex_int16_t yy_def[80] =
     {   0,
-       68,    1,   69,   69,   68,   68,   68,   68,   68,   68,
-       68,   68,   68,   68,   68,   68,   68,   68,   68,   70,
-       68,   68,   68,   71,   68,   71,   71,   71,   68,   68,
-       68,   68,   68,   68,   68,   68,   68,   68,   68,   68,
-       72,   71,   71,   71,   71,   68,   68,   68,   68,   68,
-       68,   68,   68,   68,   68,   68,   68,   73,   68,   72,
-       71,   71,   71,   73,   71,   71,   71,    0,   68,   68,
-       68,   68,   68
+       74,    1,   75,   75,   74,   74,   74,   74,   74,   74,
+       74,   74,   74,   74,   74,   74,   74,   74,   74,   76,
+       74,   74,   74,   77,   74,   77,   77,   77,   77,   74,
+       74,   74,   74,   74,   74,   74,   74,   74,   74,   74,
+       74,   74,   74,   78,   77,   77,   77,   77,   77,   74,
+       74,   74,   74,   74,   74,   74,   74,   74,   74,   74,
+       74,   79,   74,   78,   77,   77,   77,   77,   79,   77,
+       77,   77,   77,    0,   74,   74,   74,   74,   74
     } ;
 
-static const flex_int16_t yy_nxt[166] =
+static const flex_int16_t yy_nxt[179] =
     {   0,
         6,    7,    8,    9,   10,   11,   12,    6,   13,   14,
        15,   16,   17,   18,   19,   20,   21,   21,   21,   21,
        21,   22,   23,   24,   24,    6,   25,   24,   24,   24,
-       26,   24,   24,   24,   24,   27,   28,   24,   24,   29,
-       30,   32,   33,   34,   32,   33,   34,   39,   39,   39,
-       39,   39,   39,   39,   67,   40,   38,   38,   38,   38,
-       38,   39,   59,   59,   35,   41,   66,   35,   47,   59,
-       59,   48,   39,   39,   39,   39,   39,   39,   65,   49,
-       49,   49,   49,   49,   49,   49,   49,   49,   49,   50,
-       63,   51,   52,   62,   53,   61,   54,   55,   46,   56,
+       24,   26,   24,   24,   24,   24,   24,   24,   27,   28,
+       29,   24,   30,   31,   32,   33,   35,   36,   37,   35,
+       36,   37,   42,   42,   42,   42,   42,   42,   42,   73,
+       43,   41,   41,   41,   41,   41,   42,   63,   63,   38,
+       63,   63,   38,   44,   51,   72,   71,   52,   42,   42,
+       42,   42,   42,   42,   70,   53,   53,   53,   53,   53,
+       53,   53,   53,   53,   53,   54,   68,   55,   56,   67,
 
-       45,   57,   58,   31,   31,   31,   31,   31,   38,   44,
-       43,   38,   42,   42,   42,   42,   60,   60,   64,   64,
-       37,   36,   68,    5,   68,   68,   68,   68,   68,   68,
-       68,   68,   68,   68,   68,   68,   68,   68,   68,   68,
-       68,   68,   68,   68,   68,   68,   68,   68,   68,   68,
-       68,   68,   68,   68,   68,   68,   68,   68,   68,   68,
-       68,   68,   68,   68,   68
+       66,   57,   65,   50,   58,   49,   59,   48,   60,   47,
+       61,   62,   34,   34,   34,   34,   34,   41,   46,   40,
+       41,   45,   45,   45,   45,   64,   64,   69,   69,   39,
+       74,    5,   74,   74,   74,   74,   74,   74,   74,   74,
+       74,   74,   74,   74,   74,   74,   74,   74,   74,   74,
+       74,   74,   74,   74,   74,   74,   74,   74,   74,   74,
+       74,   74,   74,   74,   74,   74,   74,   74,   74,   74,
+       74,   74,   74,   74,   74,   74,   74,   74
     } ;
 
-static const flex_int16_t yy_chk[166] =
+static const flex_int16_t yy_chk[179] =
     {   0,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
-        1,    3,    3,    3,    4,    4,    4,   20,   21,   21,
-       21,   21,   21,   21,   65,   20,   38,   38,   38,   38,
-       38,   38,   40,   40,    3,   20,   62,    4,   35,   59,
-       59,   35,   39,   39,   39,   39,   39,   39,   61,   35,
-       35,   35,   35,   35,   49,   49,   49,   49,   49,   35,
-       45,   35,   35,   44,   35,   43,   35,   35,   33,   35,
+        1,    1,    1,    1,    1,    1,    3,    3,    3,    4,
+        4,    4,   20,   21,   21,   21,   21,   21,   21,   70,
+       20,   41,   41,   41,   41,   41,   41,   43,   43,    3,
+       63,   63,    4,   20,   38,   68,   66,   38,   42,   42,
+       42,   42,   42,   42,   65,   38,   38,   38,   38,   38,
+       53,   53,   53,   53,   53,   38,   49,   38,   38,   48,
 
-       28,   35,   35,   69,   69,   69,   69,   69,   70,   27,
-       26,   70,   71,   71,   71,   71,   72,   72,   73,   73,
-       18,    9,    5,   68,   68,   68,   68,   68,   68,   68,
-       68,   68,   68,   68,   68,   68,   68,   68,   68,   68,
-       68,   68,   68,   68,   68,   68,   68,   68,   68,   68,
-       68,   68,   68,   68,   68,   68,   68,   68,   68,   68,
-       68,   68,   68,   68,   68
+       47,   38,   46,   36,   38,   29,   38,   28,   38,   27,
+       38,   38,   75,   75,   75,   75,   75,   76,   26,   18,
+       76,   77,   77,   77,   77,   78,   78,   79,   79,    9,
+        5,   74,   74,   74,   74,   74,   74,   74,   74,   74,
+       74,   74,   74,   74,   74,   74,   74,   74,   74,   74,
+       74,   74,   74,   74,   74,   74,   74,   74,   74,   74,
+       74,   74,   74,   74,   74,   74,   74,   74,   74,   74,
+       74,   74,   74,   74,   74,   74,   74,   74
     } ;
 
 /* The intent behind this definition is that it'll catch
@@ -713,9 +716,9 @@ char* dup_str(const char* s)
     return result;
 }
 
-#line 716 "D:\\Bestanden\\Data\\Codes\\Programeren\\C++\\Projecten\\TuringLanguage\\parser/lexer.scanner.cc"
+#line 719 "D:\\Bestanden\\Data\\Codes\\Programeren\\C++\\Projecten\\TuringLanguage\\parser/lexer.scanner.cc"
 
-#line 718 "D:\\Bestanden\\Data\\Codes\\Programeren\\C++\\Projecten\\TuringLanguage\\parser/lexer.scanner.cc"
+#line 721 "D:\\Bestanden\\Data\\Codes\\Programeren\\C++\\Projecten\\TuringLanguage\\parser/lexer.scanner.cc"
 
 #define INITIAL 0
 #define STR 1
@@ -989,7 +992,7 @@ YY_DECL
 #line 39 "D:\\Bestanden\\Data\\Codes\\Programeren\\C++\\Projecten\\TuringLanguage\\parser\\lexer.l"
 
 
-#line 992 "D:\\Bestanden\\Data\\Codes\\Programeren\\C++\\Projecten\\TuringLanguage\\parser/lexer.scanner.cc"
+#line 995 "D:\\Bestanden\\Data\\Codes\\Programeren\\C++\\Projecten\\TuringLanguage\\parser/lexer.scanner.cc"
 
 	while ( /*CONSTCOND*/1 )		/* loops until end-of-file is reached */
 		{
@@ -1016,13 +1019,13 @@ yy_match:
 			while ( yy_chk[yy_base[yy_current_state] + yy_c] != yy_current_state )
 				{
 				yy_current_state = (int) yy_def[yy_current_state];
-				if ( yy_current_state >= 69 )
+				if ( yy_current_state >= 75 )
 					yy_c = yy_meta[yy_c];
 				}
 			yy_current_state = yy_nxt[yy_base[yy_current_state] + yy_c];
 			++yy_cp;
 			}
-		while ( yy_current_state != 68 );
+		while ( yy_current_state != 74 );
 		yy_cp = yyg->yy_last_accepting_cpos;
 		yy_current_state = yyg->yy_last_accepting_state;
 
@@ -1060,205 +1063,220 @@ YY_RULE_SETUP
 case 4:
 YY_RULE_SETUP
 #line 46 "D:\\Bestanden\\Data\\Codes\\Programeren\\C++\\Projecten\\TuringLanguage\\parser\\lexer.l"
-{return ASSIGN;}
+{return KEYW_VOID;}
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
 #line 47 "D:\\Bestanden\\Data\\Codes\\Programeren\\C++\\Projecten\\TuringLanguage\\parser\\lexer.l"
-{return PLUS;}
+{return ASSIGN;}
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
 #line 48 "D:\\Bestanden\\Data\\Codes\\Programeren\\C++\\Projecten\\TuringLanguage\\parser\\lexer.l"
-{return MIN;}
+{return PLUS;}
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
 #line 49 "D:\\Bestanden\\Data\\Codes\\Programeren\\C++\\Projecten\\TuringLanguage\\parser\\lexer.l"
-{return MUL;}
+{return MIN;}
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
 #line 50 "D:\\Bestanden\\Data\\Codes\\Programeren\\C++\\Projecten\\TuringLanguage\\parser\\lexer.l"
-{return DIV;}
+{return MUL;}
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
 #line 51 "D:\\Bestanden\\Data\\Codes\\Programeren\\C++\\Projecten\\TuringLanguage\\parser\\lexer.l"
-{return MOD;}
+{return DIV;}
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
 #line 52 "D:\\Bestanden\\Data\\Codes\\Programeren\\C++\\Projecten\\TuringLanguage\\parser\\lexer.l"
-{return BITAND;}
+{return MOD;}
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
 #line 53 "D:\\Bestanden\\Data\\Codes\\Programeren\\C++\\Projecten\\TuringLanguage\\parser\\lexer.l"
-{return BITOR;}
+{return BITAND;}
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
 #line 54 "D:\\Bestanden\\Data\\Codes\\Programeren\\C++\\Projecten\\TuringLanguage\\parser\\lexer.l"
-{return BITXOR;}
+{return BITOR;}
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
 #line 55 "D:\\Bestanden\\Data\\Codes\\Programeren\\C++\\Projecten\\TuringLanguage\\parser\\lexer.l"
-{return BITNOT;}
+{return BITXOR;}
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
 #line 56 "D:\\Bestanden\\Data\\Codes\\Programeren\\C++\\Projecten\\TuringLanguage\\parser\\lexer.l"
-{return CONCAT;}
+{return BITNOT;}
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
 #line 57 "D:\\Bestanden\\Data\\Codes\\Programeren\\C++\\Projecten\\TuringLanguage\\parser\\lexer.l"
-{return SEMICOLON;}
+{return CONCAT;}
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
 #line 58 "D:\\Bestanden\\Data\\Codes\\Programeren\\C++\\Projecten\\TuringLanguage\\parser\\lexer.l"
-{return OPEN_PAR;}
+{return SEMICOLON;}
 	YY_BREAK
 case 17:
 YY_RULE_SETUP
 #line 59 "D:\\Bestanden\\Data\\Codes\\Programeren\\C++\\Projecten\\TuringLanguage\\parser\\lexer.l"
-{return CLOSE_PAR;}
+{return OPEN_PAR;}
 	YY_BREAK
 case 18:
 YY_RULE_SETUP
 #line 60 "D:\\Bestanden\\Data\\Codes\\Programeren\\C++\\Projecten\\TuringLanguage\\parser\\lexer.l"
-{yylval->integer = std::strtoull(yytext, nullptr, 2); return INTEGER;}
+{return CLOSE_PAR;}
 	YY_BREAK
 case 19:
 YY_RULE_SETUP
 #line 61 "D:\\Bestanden\\Data\\Codes\\Programeren\\C++\\Projecten\\TuringLanguage\\parser\\lexer.l"
-{yylval->integer = std::strtoull(yytext, nullptr, 16); return INTEGER;}
+{return OPEN_CB;}
 	YY_BREAK
 case 20:
 YY_RULE_SETUP
 #line 62 "D:\\Bestanden\\Data\\Codes\\Programeren\\C++\\Projecten\\TuringLanguage\\parser\\lexer.l"
-{yylval->integer = std::strtoull(yytext, nullptr, 8); return INTEGER;}
+{return CLOSE_CB;}
 	YY_BREAK
 case 21:
 YY_RULE_SETUP
 #line 63 "D:\\Bestanden\\Data\\Codes\\Programeren\\C++\\Projecten\\TuringLanguage\\parser\\lexer.l"
-{yylval->integer = std::strtoull(yytext, nullptr, 10); return INTEGER;}
+{yylval->integer = std::strtoull(yytext, nullptr, 2); return INTEGER;}
 	YY_BREAK
 case 22:
 YY_RULE_SETUP
 #line 64 "D:\\Bestanden\\Data\\Codes\\Programeren\\C++\\Projecten\\TuringLanguage\\parser\\lexer.l"
-{yyextra->parse_str.clear(); BEGIN(STR);}
+{yylval->integer = std::strtoull(yytext, nullptr, 16); return INTEGER;}
 	YY_BREAK
 case 23:
 YY_RULE_SETUP
 #line 65 "D:\\Bestanden\\Data\\Codes\\Programeren\\C++\\Projecten\\TuringLanguage\\parser\\lexer.l"
-{yylval->str = dup_str(yytext); return ID;}
+{yylval->integer = std::strtoull(yytext, nullptr, 8); return INTEGER;}
 	YY_BREAK
 case 24:
 YY_RULE_SETUP
 #line 66 "D:\\Bestanden\\Data\\Codes\\Programeren\\C++\\Projecten\\TuringLanguage\\parser\\lexer.l"
-{}
+{yylval->integer = std::strtoull(yytext, nullptr, 10); return INTEGER;}
 	YY_BREAK
 case 25:
-/* rule 25 can match eol */
 YY_RULE_SETUP
 #line 67 "D:\\Bestanden\\Data\\Codes\\Programeren\\C++\\Projecten\\TuringLanguage\\parser\\lexer.l"
-{++yyextra->line;}
+{yyextra->parse_str.clear(); BEGIN(STR);}
 	YY_BREAK
 case 26:
 YY_RULE_SETUP
 #line 68 "D:\\Bestanden\\Data\\Codes\\Programeren\\C++\\Projecten\\TuringLanguage\\parser\\lexer.l"
+{yylval->str = dup_str(yytext); return ID;}
+	YY_BREAK
+case 27:
+YY_RULE_SETUP
+#line 69 "D:\\Bestanden\\Data\\Codes\\Programeren\\C++\\Projecten\\TuringLanguage\\parser\\lexer.l"
+{}
+	YY_BREAK
+case 28:
+/* rule 28 can match eol */
+YY_RULE_SETUP
+#line 70 "D:\\Bestanden\\Data\\Codes\\Programeren\\C++\\Projecten\\TuringLanguage\\parser\\lexer.l"
+{++yyextra->line;}
+	YY_BREAK
+case 29:
+YY_RULE_SETUP
+#line 71 "D:\\Bestanden\\Data\\Codes\\Programeren\\C++\\Projecten\\TuringLanguage\\parser\\lexer.l"
 {return ERROR_TOKEN;}
 	YY_BREAK
 
 
 
-case 27:
-YY_RULE_SETUP
-#line 73 "D:\\Bestanden\\Data\\Codes\\Programeren\\C++\\Projecten\\TuringLanguage\\parser\\lexer.l"
-{yyextra->parse_str += "\'";}
-	YY_BREAK
-case 28:
-YY_RULE_SETUP
-#line 74 "D:\\Bestanden\\Data\\Codes\\Programeren\\C++\\Projecten\\TuringLanguage\\parser\\lexer.l"
-{yyextra->parse_str += "\"";}
-	YY_BREAK
-case 29:
-YY_RULE_SETUP
-#line 75 "D:\\Bestanden\\Data\\Codes\\Programeren\\C++\\Projecten\\TuringLanguage\\parser\\lexer.l"
-{yyextra->parse_str += "\\";}
-	YY_BREAK
 case 30:
 YY_RULE_SETUP
 #line 76 "D:\\Bestanden\\Data\\Codes\\Programeren\\C++\\Projecten\\TuringLanguage\\parser\\lexer.l"
-{yyextra->parse_str += "\a";}
+{yyextra->parse_str += "\'";}
 	YY_BREAK
 case 31:
 YY_RULE_SETUP
 #line 77 "D:\\Bestanden\\Data\\Codes\\Programeren\\C++\\Projecten\\TuringLanguage\\parser\\lexer.l"
-{yyextra->parse_str += "\b";}
+{yyextra->parse_str += "\"";}
 	YY_BREAK
 case 32:
 YY_RULE_SETUP
 #line 78 "D:\\Bestanden\\Data\\Codes\\Programeren\\C++\\Projecten\\TuringLanguage\\parser\\lexer.l"
-{yyextra->parse_str += "\f";}
+{yyextra->parse_str += "\\";}
 	YY_BREAK
 case 33:
 YY_RULE_SETUP
 #line 79 "D:\\Bestanden\\Data\\Codes\\Programeren\\C++\\Projecten\\TuringLanguage\\parser\\lexer.l"
-{yyextra->parse_str += "\n";}
+{yyextra->parse_str += "\a";}
 	YY_BREAK
 case 34:
 YY_RULE_SETUP
 #line 80 "D:\\Bestanden\\Data\\Codes\\Programeren\\C++\\Projecten\\TuringLanguage\\parser\\lexer.l"
-{yyextra->parse_str += "\r";}
+{yyextra->parse_str += "\b";}
 	YY_BREAK
 case 35:
 YY_RULE_SETUP
 #line 81 "D:\\Bestanden\\Data\\Codes\\Programeren\\C++\\Projecten\\TuringLanguage\\parser\\lexer.l"
-{yyextra->parse_str += "\t";}
+{yyextra->parse_str += "\f";}
 	YY_BREAK
 case 36:
 YY_RULE_SETUP
 #line 82 "D:\\Bestanden\\Data\\Codes\\Programeren\\C++\\Projecten\\TuringLanguage\\parser\\lexer.l"
-{yyextra->parse_str += "\v";}
+{yyextra->parse_str += "\n";}
 	YY_BREAK
 case 37:
 YY_RULE_SETUP
 #line 83 "D:\\Bestanden\\Data\\Codes\\Programeren\\C++\\Projecten\\TuringLanguage\\parser\\lexer.l"
-{yyextra->parse_str += char(std::strtoull(yytext + 1, nullptr, 8));}
+{yyextra->parse_str += "\r";}
 	YY_BREAK
 case 38:
 YY_RULE_SETUP
 #line 84 "D:\\Bestanden\\Data\\Codes\\Programeren\\C++\\Projecten\\TuringLanguage\\parser\\lexer.l"
-{yyextra->parse_str += char(std::strtoull(yytext + 2, nullptr, 16));}
+{yyextra->parse_str += "\t";}
 	YY_BREAK
 case 39:
 YY_RULE_SETUP
 #line 85 "D:\\Bestanden\\Data\\Codes\\Programeren\\C++\\Projecten\\TuringLanguage\\parser\\lexer.l"
-{BEGIN(INITIAL); yylval->str = dup_str(yyextra->parse_str.c_str()); return STRING;}
+{yyextra->parse_str += "\v";}
 	YY_BREAK
 case 40:
-/* rule 40 can match eol */
 YY_RULE_SETUP
 #line 86 "D:\\Bestanden\\Data\\Codes\\Programeren\\C++\\Projecten\\TuringLanguage\\parser\\lexer.l"
-{++yyextra->line; yyextra->parse_str += yytext;}
+{yyextra->parse_str += char(std::strtoull(yytext + 1, nullptr, 8));}
 	YY_BREAK
 case 41:
 YY_RULE_SETUP
 #line 87 "D:\\Bestanden\\Data\\Codes\\Programeren\\C++\\Projecten\\TuringLanguage\\parser\\lexer.l"
+{yyextra->parse_str += char(std::strtoull(yytext + 2, nullptr, 16));}
+	YY_BREAK
+case 42:
+YY_RULE_SETUP
+#line 88 "D:\\Bestanden\\Data\\Codes\\Programeren\\C++\\Projecten\\TuringLanguage\\parser\\lexer.l"
+{BEGIN(INITIAL); yylval->str = dup_str(yyextra->parse_str.c_str()); return STRING;}
+	YY_BREAK
+case 43:
+/* rule 43 can match eol */
+YY_RULE_SETUP
+#line 89 "D:\\Bestanden\\Data\\Codes\\Programeren\\C++\\Projecten\\TuringLanguage\\parser\\lexer.l"
+{++yyextra->line; yyextra->parse_str += yytext;}
+	YY_BREAK
+case 44:
+YY_RULE_SETUP
+#line 90 "D:\\Bestanden\\Data\\Codes\\Programeren\\C++\\Projecten\\TuringLanguage\\parser\\lexer.l"
 {yyextra->parse_str += yytext;}
 	YY_BREAK
 
-case 42:
+case 45:
 YY_RULE_SETUP
-#line 90 "D:\\Bestanden\\Data\\Codes\\Programeren\\C++\\Projecten\\TuringLanguage\\parser\\lexer.l"
+#line 93 "D:\\Bestanden\\Data\\Codes\\Programeren\\C++\\Projecten\\TuringLanguage\\parser\\lexer.l"
 ECHO;
 	YY_BREAK
-#line 1261 "D:\\Bestanden\\Data\\Codes\\Programeren\\C++\\Projecten\\TuringLanguage\\parser/lexer.scanner.cc"
+#line 1279 "D:\\Bestanden\\Data\\Codes\\Programeren\\C++\\Projecten\\TuringLanguage\\parser/lexer.scanner.cc"
 case YY_STATE_EOF(INITIAL):
 case YY_STATE_EOF(STR):
 	yyterminate();
@@ -1559,7 +1577,7 @@ static int yy_get_next_buffer (yyscan_t yyscanner)
 		while ( yy_chk[yy_base[yy_current_state] + yy_c] != yy_current_state )
 			{
 			yy_current_state = (int) yy_def[yy_current_state];
-			if ( yy_current_state >= 69 )
+			if ( yy_current_state >= 75 )
 				yy_c = yy_meta[yy_c];
 			}
 		yy_current_state = yy_nxt[yy_base[yy_current_state] + yy_c];
@@ -1588,11 +1606,11 @@ static int yy_get_next_buffer (yyscan_t yyscanner)
 	while ( yy_chk[yy_base[yy_current_state] + yy_c] != yy_current_state )
 		{
 		yy_current_state = (int) yy_def[yy_current_state];
-		if ( yy_current_state >= 69 )
+		if ( yy_current_state >= 75 )
 			yy_c = yy_meta[yy_c];
 		}
 	yy_current_state = yy_nxt[yy_base[yy_current_state] + yy_c];
-	yy_is_jam = (yy_current_state == 68);
+	yy_is_jam = (yy_current_state == 74);
 
 	(void)yyg;
 	return yy_is_jam ? 0 : yy_current_state;
@@ -2403,7 +2421,7 @@ void yyfree (void * ptr , yyscan_t yyscanner)
 
 #define YYTABLES_NAME "yytables"
 
-#line 90 "D:\\Bestanden\\Data\\Codes\\Programeren\\C++\\Projecten\\TuringLanguage\\parser\\lexer.l"
+#line 93 "D:\\Bestanden\\Data\\Codes\\Programeren\\C++\\Projecten\\TuringLanguage\\parser\\lexer.l"
 
 
 extern "C" int parser_yywrap(yyscan_t)

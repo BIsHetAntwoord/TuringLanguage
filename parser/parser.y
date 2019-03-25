@@ -17,6 +17,7 @@
 %token KEYW_FALSE "false"
 %token KEYW_TRUE "true"
 %token KEYW_U32 "u32"
+%token KEYW_VOID "void"
 
 %token SEMICOLON ";"
 %token ASSIGN "="
@@ -33,6 +34,8 @@
 
 %token OPEN_PAR "("
 %token CLOSE_PAR ")"
+%token OPEN_CB "{"
+%token CLOSE_CB "}"
 
 %token<integer> INTEGER "integer"
 %token<str> ID "identifier"
@@ -40,7 +43,7 @@
 %token ERROR_TOKEN "error token"
 
 %destructor {delete[] $$;} <str>
-%destructor {delete $$;} <node>
+%destructor {delete $$;} <node> <type>
 
 %right ASSIGN
 %left CONCAT
@@ -52,12 +55,28 @@
 %right UPLUS UMIN BITNOT TRY
 
 %type<node> statement_list statement expression calc_expression constant
+%type<node> global_decl_list function arg_list
 %type<node> lvalue rvalue
+%type<type> rettype datatype
 
 %%
 
 root
-    : statement_list                                                    {x->root = $1;}
+    : global_decl_list                                                  {x->root = $1;}
+    ;
+
+global_decl_list
+    : global_decl_list function                                         {$$ = new GlobalDeclListNode((GlobalDeclNode*)$1, (GlobalDeclNode*)$2);}
+    |                                                                   {$$ = new EmptyDeclNode();}
+    ;
+
+function
+    : rettype ID OPEN_PAR arg_list CLOSE_PAR
+          OPEN_CB statement_list CLOSE_CB                               {$$ = new FunctionDeclNode($1, $2, (ArgNode*)$4, (StatementNode*)$7); delete[] $2;}
+    ;
+
+arg_list
+    :                                                                   {$$ = new EmptyArgNode();}
     ;
 
 statement_list
@@ -95,6 +114,15 @@ constant
     : INTEGER                                                           {$$ = new IntegerNode($1);}
     | KEYW_TRUE                                                         {$$ = new BoolNode(true);}
     | KEYW_FALSE                                                        {$$ = new BoolNode(false);}
+    ;
+
+datatype
+    : KEYW_U32                                                          {$$ = new DataType(BaseType::U32);}
+    ;
+
+rettype
+    : datatype                                                          {$$ = $1;}
+    | KEYW_VOID                                                         {$$ = new DataType(BaseType::VOID);}
     ;
 
 %%

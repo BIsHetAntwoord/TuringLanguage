@@ -2,27 +2,28 @@
 1553511549 source:d:\bestanden\data\codes\programeren\c++\projecten\turinglanguage\main.cpp
 	<iostream>
 
-1553513387 source:d:\bestanden\data\codes\programeren\c++\projecten\turinglanguage\parser\parser.y
+1553519458 source:d:\bestanden\data\codes\programeren\c++\projecten\turinglanguage\parser\parser.y
 	"parser/parser_info.hpp"
 	"intcode/treenode.hpp"
 	<iostream>
 
-1552056576 d:\bestanden\data\codes\programeren\c++\projecten\turinglanguage\parser\parser_info.hpp
+1553519193 d:\bestanden\data\codes\programeren\c++\projecten\turinglanguage\parser\parser_info.hpp
 	<string>
 	<cstdint>
 
-1553513374 d:\bestanden\data\codes\programeren\c++\projecten\turinglanguage\intcode\treenode.hpp
+1553523680 d:\bestanden\data\codes\programeren\c++\projecten\turinglanguage\intcode\treenode.hpp
 	"intcode/datatype.hpp"
 
-1553512816 d:\bestanden\data\codes\programeren\c++\projecten\turinglanguage\intcode\datatype.hpp
+1553522813 d:\bestanden\data\codes\programeren\c++\projecten\turinglanguage\intcode\datatype.hpp
 	<memory>
+	<iosfwd>
 
-1553511701 source:d:\bestanden\data\codes\programeren\c++\projecten\turinglanguage\parser\lexer.l
+1553518633 source:d:\bestanden\data\codes\programeren\c++\projecten\turinglanguage\parser\lexer.l
 	"parser/parser_info.hpp"
 	"parser/parser.parser.hh"
 	<cstring>
 
-1553513388 d:\bestanden\data\codes\programeren\c++\projecten\turinglanguage\parser\parser.parser.hh
+1553523694 d:\bestanden\data\codes\programeren\c++\projecten\turinglanguage\parser\parser.parser.hh
 
 1550150028 source:d:\bestanden\data\codes\programeren\c++\projecten\turinglanguage\parser\parser.cpp
 	"parser/parser.hpp"
@@ -33,11 +34,19 @@
 	<string>
 	<cstdio>
 
-1553513721 d:\bestanden\data\codes\programeren\c++\projecten\turinglanguage\error\exceptions.hpp
+1553521780 d:\bestanden\data\codes\programeren\c++\projecten\turinglanguage\error\exceptions.hpp
 	<stdexcept>
 	"error/exceptions.inl"
 
-1553513745 d:\bestanden\data\codes\programeren\c++\projecten\turinglanguage\error\exceptions.inl
+1553521807 d:\bestanden\data\codes\programeren\c++\projecten\turinglanguage\error\exceptions.inl
 	<sstream>
 	<utility>
+
+1553521691 source:d:\bestanden\data\codes\programeren\c++\projecten\turinglanguage\intcode\treenode.cpp
+	"intcode/treenode.hpp"
+	"error/exceptions.hpp"
+
+1553522817 source:d:\bestanden\data\codes\programeren\c++\projecten\turinglanguage\intcode\datatype.cpp
+	"intcode/datatype.hpp"
+	<iostream>
 

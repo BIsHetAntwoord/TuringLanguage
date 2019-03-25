@@ -21,6 +21,15 @@ class ParseException : public CompilerException
         virtual ~ParseException() = default;
 };
 
+class TypeCheckException : public CompilerException
+{
+    public:
+        template <typename... Args>
+        TypeCheckException(Args&&...);
+
+        virtual ~TypeCheckException() = default;
+};
+
 #include "error/exceptions.inl"
 
 #endif // EXCEPTIONS_HPP_INCLUDED

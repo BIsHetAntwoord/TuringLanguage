@@ -35,6 +35,7 @@
 		</Compiler>
 		<Unit filename="error/exceptions.hpp" />
 		<Unit filename="error/exceptions.inl" />
+		<Unit filename="intcode/datatype.cpp" />
 		<Unit filename="intcode/datatype.hpp" />
 		<Unit filename="intcode/treenode.cpp" />
 		<Unit filename="intcode/treenode.hpp" />

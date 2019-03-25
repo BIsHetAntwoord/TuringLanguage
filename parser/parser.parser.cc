@@ -124,27 +124,30 @@ extern int parser_yydebug;
     KEYW_FALSE = 258,
     KEYW_TRUE = 259,
     KEYW_U32 = 260,
-    SEMICOLON = 261,
-    ASSIGN = 262,
-    PLUS = 263,
-    MIN = 264,
-    MUL = 265,
-    DIV = 266,
-    MOD = 267,
-    BITAND = 268,
-    BITOR = 269,
-    BITXOR = 270,
-    BITNOT = 271,
-    CONCAT = 272,
-    OPEN_PAR = 273,
-    CLOSE_PAR = 274,
-    INTEGER = 275,
-    ID = 276,
-    STRING = 277,
-    ERROR_TOKEN = 278,
-    UPLUS = 279,
-    UMIN = 280,
-    TRY = 281
+    KEYW_VOID = 261,
+    SEMICOLON = 262,
+    ASSIGN = 263,
+    PLUS = 264,
+    MIN = 265,
+    MUL = 266,
+    DIV = 267,
+    MOD = 268,
+    BITAND = 269,
+    BITOR = 270,
+    BITXOR = 271,
+    BITNOT = 272,
+    CONCAT = 273,
+    OPEN_PAR = 274,
+    CLOSE_PAR = 275,
+    OPEN_CB = 276,
+    CLOSE_CB = 277,
+    INTEGER = 278,
+    ID = 279,
+    STRING = 280,
+    ERROR_TOKEN = 281,
+    UPLUS = 282,
+    UMIN = 283,
+    TRY = 284
   };
 #endif
 
@@ -158,7 +161,7 @@ int parser_yyparse (parse_info* x);
 
 /* Copy the second part of user declarations.  */
 
-#line 162 "D:\\Bestanden\\Data\\Codes\\Programeren\\C++\\Projecten\\TuringLanguage\\parser/parser.parser.cc" /* yacc.c:358  */
+#line 165 "D:\\Bestanden\\Data\\Codes\\Programeren\\C++\\Projecten\\TuringLanguage\\parser/parser.parser.cc" /* yacc.c:358  */
 
 #ifdef short
 # undef short
@@ -400,21 +403,21 @@ union yyalloc
 /* YYFINAL -- State number of the termination state.  */
 #define YYFINAL  3
 /* YYLAST -- Last index in YYTABLE.  */
-#define YYLAST   24
+#define YYLAST   32
 
 /* YYNTOKENS -- Number of terminals.  */
-#define YYNTOKENS  27
+#define YYNTOKENS  30
 /* YYNNTS -- Number of nonterminals.  */
-#define YYNNTS  9
+#define YYNNTS  14
 /* YYNRULES -- Number of rules.  */
-#define YYNRULES  18
+#define YYNRULES  25
 /* YYNSTATES -- Number of states.  */
-#define YYNSTATES  26
+#define YYNSTATES  38
 
 /* YYTRANSLATE[YYX] -- Symbol number corresponding to YYX as returned
    by yylex, with out-of-bounds checking.  */
 #define YYUNDEFTOK  2
-#define YYMAXUTOK   281
+#define YYMAXUTOK   284
 
 #define YYTRANSLATE(YYX)                                                \
   ((unsigned) (YYX) <= YYMAXUTOK ? yytranslate[YYX] : YYUNDEFTOK)
@@ -451,15 +454,16 @@ static const yytype_uint8 yytranslate[] =
        2,     2,     2,     2,     2,     2,     1,     2,     3,     4,
        5,     6,     7,     8,     9,    10,    11,    12,    13,    14,
       15,    16,    17,    18,    19,    20,    21,    22,    23,    24,
-      25,    26
+      25,    26,    27,    28,    29
 };
 
 #if PARSER_YYDEBUG
   /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
 static const yytype_uint8 yyrline[] =
 {
-       0,    60,    60,    64,    65,    69,    70,    74,    75,    79,
-      80,    81,    82,    86,    87,    91,    95,    96,    97
+       0,    65,    65,    69,    70,    74,    79,    83,    84,    88,
+      89,    93,    94,    98,    99,   100,   101,   105,   106,   110,
+     114,   115,   116,   120,   124,   125
 };
 #endif
 
@@ -469,11 +473,13 @@ static const yytype_uint8 yyrline[] =
 static const char *const yytname[] =
 {
   "$end", "error", "$undefined", "\"false\"", "\"true\"", "\"u32\"",
-  "\";\"", "\"=\"", "\"+\"", "\"-\"", "\"*\"", "\"/\"", "\"%\"", "\"&\"",
-  "\"|\"", "\"^\"", "\"~\"", "\"..\"", "\"(\"", "\")\"", "\"integer\"",
-  "\"identifier\"", "\"string\"", "\"error token\"", "UPLUS", "UMIN",
-  "TRY", "$accept", "root", "statement_list", "statement", "expression",
-  "calc_expression", "lvalue", "rvalue", "constant", YY_NULLPTR
+  "\"void\"", "\";\"", "\"=\"", "\"+\"", "\"-\"", "\"*\"", "\"/\"",
+  "\"%\"", "\"&\"", "\"|\"", "\"^\"", "\"~\"", "\"..\"", "\"(\"", "\")\"",
+  "\"{\"", "\"}\"", "\"integer\"", "\"identifier\"", "\"string\"",
+  "\"error token\"", "UPLUS", "UMIN", "TRY", "$accept", "root",
+  "global_decl_list", "function", "arg_list", "statement_list",
+  "statement", "expression", "calc_expression", "lvalue", "rvalue",
+  "constant", "datatype", "rettype", YY_NULLPTR
 };
 #endif
 
@@ -484,7 +490,7 @@ static const yytype_uint16 yytoknum[] =
 {
        0,   256,   257,   258,   259,   260,   261,   262,   263,   264,
      265,   266,   267,   268,   269,   270,   271,   272,   273,   274,
-     275,   276,   277,   278,   279,   280,   281
+     275,   276,   277,   278,   279,   280,   281,   282,   283,   284
 };
 # endif
 
@@ -502,9 +508,10 @@ static const yytype_uint16 yytoknum[] =
      STATE-NUM.  */
 static const yytype_int8 yypact[] =
 {
-     -11,     2,    -3,   -11,   -11,   -11,   -11,     1,   -11,   -11,
-     -11,     0,   -11,   -11,   -11,   -11,     4,   -10,    -6,   -11,
-       1,     1,   -11,   -11,     4,   -11
+     -11,    11,     3,   -11,   -11,   -11,   -11,   -11,   -10,    -4,
+     -11,     6,     7,   -11,    -3,   -11,   -11,   -11,    -1,   -11,
+     -11,   -11,   -11,    -2,   -11,   -11,   -11,   -11,     4,     9,
+      10,   -11,    -1,    -1,   -11,   -11,     4,   -11
 };
 
   /* YYDEFACT[STATE-NUM] -- Default reduction number in state STATE-NUM.
@@ -512,21 +519,24 @@ static const yytype_int8 yypact[] =
      means the default is an error.  */
 static const yytype_uint8 yydefact[] =
 {
-       4,     0,     2,     1,    18,    17,     5,     0,    16,    13,
-       3,     0,     8,     7,     9,    15,     0,     8,     7,     6,
-       0,     0,    12,    14,    10,    11
+       4,     0,     2,     1,    23,    25,     3,    24,     0,     0,
+       6,     0,     0,     8,     0,    22,    21,     9,     0,     5,
+      20,    17,     7,     0,    12,    11,    13,    19,     0,    12,
+      11,    10,     0,     0,    16,    18,    14,    15
 };
 
   /* YYPGOTO[NTERM-NUM].  */
 static const yytype_int8 yypgoto[] =
 {
-     -11,   -11,   -11,   -11,     3,     7,     9,   -11,   -11
+     -11,   -11,   -11,   -11,   -11,   -11,   -11,    -8,    13,    14,
+     -11,   -11,   -11,   -11
 };
 
   /* YYDEFGOTO[NTERM-NUM].  */
 static const yytype_int8 yydefgoto[] =
 {
-      -1,     1,     2,    10,    11,    12,    13,    14,    15
+      -1,     1,     2,     6,    11,    14,    22,    23,    24,    25,
+      26,    27,     7,     8
 };
 
   /* YYTABLE[YYPACT[STATE-NUM]] -- What to do in state STATE-NUM.  If
@@ -534,39 +544,44 @@ static const yytype_int8 yydefgoto[] =
      number is the opposite.  If YYTABLE_NINF, syntax error.  */
 static const yytype_uint8 yytable[] =
 {
-       4,     5,     3,     6,     4,     5,    19,    20,    21,    22,
-      16,    20,    21,    23,    17,     7,    18,     8,     9,     7,
-       0,     8,     9,    24,    25
+      15,    16,    15,    16,    17,    31,    32,    33,     4,     5,
+      28,     3,    32,    33,     9,    10,    18,     0,    18,    19,
+      20,    21,    20,    21,    36,    37,    12,     0,    13,    34,
+      35,    29,    30
 };
 
 static const yytype_int8 yycheck[] =
 {
-       3,     4,     0,     6,     3,     4,     6,     7,     8,    19,
-       7,     7,     8,    19,     7,    18,     7,    20,    21,    18,
-      -1,    20,    21,    20,    21
+       3,     4,     3,     4,     7,     7,     8,     9,     5,     6,
+      18,     0,     8,     9,    24,    19,    19,    -1,    19,    22,
+      23,    24,    23,    24,    32,    33,    20,    -1,    21,    20,
+      20,    18,    18
 };
 
   /* YYSTOS[STATE-NUM] -- The (internal number of the) accessing
      symbol of state STATE-NUM.  */
 static const yytype_uint8 yystos[] =
 {
-       0,    28,    29,     0,     3,     4,     6,    18,    20,    21,
-      30,    31,    32,    33,    34,    35,    31,    32,    33,     6,
-       7,     8,    19,    19,    31,    31
+       0,    31,    32,     0,     5,     6,    33,    42,    43,    24,
+      19,    34,    20,    21,    35,     3,     4,     7,    19,    22,
+      23,    24,    36,    37,    38,    39,    40,    41,    37,    38,
+      39,     7,     8,     9,    20,    20,    37,    37
 };
 
   /* YYR1[YYN] -- Symbol number of symbol that rule YYN derives.  */
 static const yytype_uint8 yyr1[] =
 {
-       0,    27,    28,    29,    29,    30,    30,    31,    31,    32,
-      32,    32,    32,    33,    33,    34,    35,    35,    35
+       0,    30,    31,    32,    32,    33,    34,    35,    35,    36,
+      36,    37,    37,    38,    38,    38,    38,    39,    39,    40,
+      41,    41,    41,    42,    43,    43
 };
 
   /* YYR2[YYN] -- Number of symbols on the right hand side of rule YYN.  */
 static const yytype_uint8 yyr2[] =
 {
-       0,     2,     1,     2,     0,     1,     2,     1,     1,     1,
-       3,     3,     3,     1,     3,     1,     1,     1,     1
+       0,     2,     1,     2,     0,     8,     0,     2,     0,     1,
+       2,     1,     1,     1,     3,     3,     3,     1,     3,     1,
+       1,     1,     1,     1,     1,     1
 };
 
 
@@ -992,58 +1007,88 @@ yydestruct (const char *yymsg, int yytype, YYSTYPE *yyvaluep, parse_info* x)
   YY_IGNORE_MAYBE_UNINITIALIZED_BEGIN
   switch (yytype)
     {
-          case 21: /* "identifier"  */
-#line 42 "D:\\Bestanden\\Data\\Codes\\Programeren\\C++\\Projecten\\TuringLanguage\\parser\\parser.y" /* yacc.c:1258  */
+          case 24: /* "identifier"  */
+#line 45 "D:\\Bestanden\\Data\\Codes\\Programeren\\C++\\Projecten\\TuringLanguage\\parser\\parser.y" /* yacc.c:1258  */
       {delete[] ((*yyvaluep).str);}
-#line 999 "D:\\Bestanden\\Data\\Codes\\Programeren\\C++\\Projecten\\TuringLanguage\\parser/parser.parser.cc" /* yacc.c:1258  */
+#line 1014 "D:\\Bestanden\\Data\\Codes\\Programeren\\C++\\Projecten\\TuringLanguage\\parser/parser.parser.cc" /* yacc.c:1258  */
         break;
 
-    case 22: /* "string"  */
-#line 42 "D:\\Bestanden\\Data\\Codes\\Programeren\\C++\\Projecten\\TuringLanguage\\parser\\parser.y" /* yacc.c:1258  */
+    case 25: /* "string"  */
+#line 45 "D:\\Bestanden\\Data\\Codes\\Programeren\\C++\\Projecten\\TuringLanguage\\parser\\parser.y" /* yacc.c:1258  */
       {delete[] ((*yyvaluep).str);}
-#line 1005 "D:\\Bestanden\\Data\\Codes\\Programeren\\C++\\Projecten\\TuringLanguage\\parser/parser.parser.cc" /* yacc.c:1258  */
+#line 1020 "D:\\Bestanden\\Data\\Codes\\Programeren\\C++\\Projecten\\TuringLanguage\\parser/parser.parser.cc" /* yacc.c:1258  */
         break;
 
-    case 29: /* statement_list  */
-#line 43 "D:\\Bestanden\\Data\\Codes\\Programeren\\C++\\Projecten\\TuringLanguage\\parser\\parser.y" /* yacc.c:1258  */
+    case 32: /* global_decl_list  */
+#line 46 "D:\\Bestanden\\Data\\Codes\\Programeren\\C++\\Projecten\\TuringLanguage\\parser\\parser.y" /* yacc.c:1258  */
       {delete ((*yyvaluep).node);}
-#line 1011 "D:\\Bestanden\\Data\\Codes\\Programeren\\C++\\Projecten\\TuringLanguage\\parser/parser.parser.cc" /* yacc.c:1258  */
+#line 1026 "D:\\Bestanden\\Data\\Codes\\Programeren\\C++\\Projecten\\TuringLanguage\\parser/parser.parser.cc" /* yacc.c:1258  */
         break;
 
-    case 30: /* statement  */
-#line 43 "D:\\Bestanden\\Data\\Codes\\Programeren\\C++\\Projecten\\TuringLanguage\\parser\\parser.y" /* yacc.c:1258  */
+    case 33: /* function  */
+#line 46 "D:\\Bestanden\\Data\\Codes\\Programeren\\C++\\Projecten\\TuringLanguage\\parser\\parser.y" /* yacc.c:1258  */
       {delete ((*yyvaluep).node);}
-#line 1017 "D:\\Bestanden\\Data\\Codes\\Programeren\\C++\\Projecten\\TuringLanguage\\parser/parser.parser.cc" /* yacc.c:1258  */
+#line 1032 "D:\\Bestanden\\Data\\Codes\\Programeren\\C++\\Projecten\\TuringLanguage\\parser/parser.parser.cc" /* yacc.c:1258  */
         break;
 
-    case 31: /* expression  */
-#line 43 "D:\\Bestanden\\Data\\Codes\\Programeren\\C++\\Projecten\\TuringLanguage\\parser\\parser.y" /* yacc.c:1258  */
+    case 34: /* arg_list  */
+#line 46 "D:\\Bestanden\\Data\\Codes\\Programeren\\C++\\Projecten\\TuringLanguage\\parser\\parser.y" /* yacc.c:1258  */
       {delete ((*yyvaluep).node);}
-#line 1023 "D:\\Bestanden\\Data\\Codes\\Programeren\\C++\\Projecten\\TuringLanguage\\parser/parser.parser.cc" /* yacc.c:1258  */
+#line 1038 "D:\\Bestanden\\Data\\Codes\\Programeren\\C++\\Projecten\\TuringLanguage\\parser/parser.parser.cc" /* yacc.c:1258  */
         break;
 
-    case 32: /* calc_expression  */
-#line 43 "D:\\Bestanden\\Data\\Codes\\Programeren\\C++\\Projecten\\TuringLanguage\\parser\\parser.y" /* yacc.c:1258  */
+    case 35: /* statement_list  */
+#line 46 "D:\\Bestanden\\Data\\Codes\\Programeren\\C++\\Projecten\\TuringLanguage\\parser\\parser.y" /* yacc.c:1258  */
       {delete ((*yyvaluep).node);}
-#line 1029 "D:\\Bestanden\\Data\\Codes\\Programeren\\C++\\Projecten\\TuringLanguage\\parser/parser.parser.cc" /* yacc.c:1258  */
+#line 1044 "D:\\Bestanden\\Data\\Codes\\Programeren\\C++\\Projecten\\TuringLanguage\\parser/parser.parser.cc" /* yacc.c:1258  */
         break;
 
-    case 33: /* lvalue  */
-#line 43 "D:\\Bestanden\\Data\\Codes\\Programeren\\C++\\Projecten\\TuringLanguage\\parser\\parser.y" /* yacc.c:1258  */
+    case 36: /* statement  */
+#line 46 "D:\\Bestanden\\Data\\Codes\\Programeren\\C++\\Projecten\\TuringLanguage\\parser\\parser.y" /* yacc.c:1258  */
       {delete ((*yyvaluep).node);}
-#line 1035 "D:\\Bestanden\\Data\\Codes\\Programeren\\C++\\Projecten\\TuringLanguage\\parser/parser.parser.cc" /* yacc.c:1258  */
+#line 1050 "D:\\Bestanden\\Data\\Codes\\Programeren\\C++\\Projecten\\TuringLanguage\\parser/parser.parser.cc" /* yacc.c:1258  */
         break;
 
-    case 34: /* rvalue  */
-#line 43 "D:\\Bestanden\\Data\\Codes\\Programeren\\C++\\Projecten\\TuringLanguage\\parser\\parser.y" /* yacc.c:1258  */
+    case 37: /* expression  */
+#line 46 "D:\\Bestanden\\Data\\Codes\\Programeren\\C++\\Projecten\\TuringLanguage\\parser\\parser.y" /* yacc.c:1258  */
       {delete ((*yyvaluep).node);}
-#line 1041 "D:\\Bestanden\\Data\\Codes\\Programeren\\C++\\Projecten\\TuringLanguage\\parser/parser.parser.cc" /* yacc.c:1258  */
+#line 1056 "D:\\Bestanden\\Data\\Codes\\Programeren\\C++\\Projecten\\TuringLanguage\\parser/parser.parser.cc" /* yacc.c:1258  */
         break;
 
-    case 35: /* constant  */
-#line 43 "D:\\Bestanden\\Data\\Codes\\Programeren\\C++\\Projecten\\TuringLanguage\\parser\\parser.y" /* yacc.c:1258  */
+    case 38: /* calc_expression  */
+#line 46 "D:\\Bestanden\\Data\\Codes\\Programeren\\C++\\Projecten\\TuringLanguage\\parser\\parser.y" /* yacc.c:1258  */
       {delete ((*yyvaluep).node);}
-#line 1047 "D:\\Bestanden\\Data\\Codes\\Programeren\\C++\\Projecten\\TuringLanguage\\parser/parser.parser.cc" /* yacc.c:1258  */
+#line 1062 "D:\\Bestanden\\Data\\Codes\\Programeren\\C++\\Projecten\\TuringLanguage\\parser/parser.parser.cc" /* yacc.c:1258  */
+        break;
+
+    case 39: /* lvalue  */
+#line 46 "D:\\Bestanden\\Data\\Codes\\Programeren\\C++\\Projecten\\TuringLanguage\\parser\\parser.y" /* yacc.c:1258  */
+      {delete ((*yyvaluep).node);}
+#line 1068 "D:\\Bestanden\\Data\\Codes\\Programeren\\C++\\Projecten\\TuringLanguage\\parser/parser.parser.cc" /* yacc.c:1258  */
+        break;
+
+    case 40: /* rvalue  */
+#line 46 "D:\\Bestanden\\Data\\Codes\\Programeren\\C++\\Projecten\\TuringLanguage\\parser\\parser.y" /* yacc.c:1258  */
+      {delete ((*yyvaluep).node);}
+#line 1074 "D:\\Bestanden\\Data\\Codes\\Programeren\\C++\\Projecten\\TuringLanguage\\parser/parser.parser.cc" /* yacc.c:1258  */
+        break;
+
+    case 41: /* constant  */
+#line 46 "D:\\Bestanden\\Data\\Codes\\Programeren\\C++\\Projecten\\TuringLanguage\\parser\\parser.y" /* yacc.c:1258  */
+      {delete ((*yyvaluep).node);}
+#line 1080 "D:\\Bestanden\\Data\\Codes\\Programeren\\C++\\Projecten\\TuringLanguage\\parser/parser.parser.cc" /* yacc.c:1258  */
+        break;
+
+    case 42: /* datatype  */
+#line 46 "D:\\Bestanden\\Data\\Codes\\Programeren\\C++\\Projecten\\TuringLanguage\\parser\\parser.y" /* yacc.c:1258  */
+      {delete ((*yyvaluep).type);}
+#line 1086 "D:\\Bestanden\\Data\\Codes\\Programeren\\C++\\Projecten\\TuringLanguage\\parser/parser.parser.cc" /* yacc.c:1258  */
+        break;
+
+    case 43: /* rettype  */
+#line 46 "D:\\Bestanden\\Data\\Codes\\Programeren\\C++\\Projecten\\TuringLanguage\\parser\\parser.y" /* yacc.c:1258  */
+      {delete ((*yyvaluep).type);}
+#line 1092 "D:\\Bestanden\\Data\\Codes\\Programeren\\C++\\Projecten\\TuringLanguage\\parser/parser.parser.cc" /* yacc.c:1258  */
         break;
 
 
@@ -1309,109 +1354,151 @@ yyreduce:
   switch (yyn)
     {
         case 2:
-#line 60 "D:\\Bestanden\\Data\\Codes\\Programeren\\C++\\Projecten\\TuringLanguage\\parser\\parser.y" /* yacc.c:1651  */
+#line 65 "D:\\Bestanden\\Data\\Codes\\Programeren\\C++\\Projecten\\TuringLanguage\\parser\\parser.y" /* yacc.c:1651  */
     {x->root = (yyvsp[0].node);}
-#line 1315 "D:\\Bestanden\\Data\\Codes\\Programeren\\C++\\Projecten\\TuringLanguage\\parser/parser.parser.cc" /* yacc.c:1651  */
+#line 1360 "D:\\Bestanden\\Data\\Codes\\Programeren\\C++\\Projecten\\TuringLanguage\\parser/parser.parser.cc" /* yacc.c:1651  */
     break;
 
   case 3:
-#line 64 "D:\\Bestanden\\Data\\Codes\\Programeren\\C++\\Projecten\\TuringLanguage\\parser\\parser.y" /* yacc.c:1651  */
-    {(yyval.node) = new StatementListNode((StatementNode*)(yyvsp[-1].node), (StatementNode*)(yyvsp[0].node));}
-#line 1321 "D:\\Bestanden\\Data\\Codes\\Programeren\\C++\\Projecten\\TuringLanguage\\parser/parser.parser.cc" /* yacc.c:1651  */
+#line 69 "D:\\Bestanden\\Data\\Codes\\Programeren\\C++\\Projecten\\TuringLanguage\\parser\\parser.y" /* yacc.c:1651  */
+    {(yyval.node) = new GlobalDeclListNode((GlobalDeclNode*)(yyvsp[-1].node), (GlobalDeclNode*)(yyvsp[0].node));}
+#line 1366 "D:\\Bestanden\\Data\\Codes\\Programeren\\C++\\Projecten\\TuringLanguage\\parser/parser.parser.cc" /* yacc.c:1651  */
     break;
 
   case 4:
-#line 65 "D:\\Bestanden\\Data\\Codes\\Programeren\\C++\\Projecten\\TuringLanguage\\parser\\parser.y" /* yacc.c:1651  */
-    {(yyval.node) = new EmptyNode();}
-#line 1327 "D:\\Bestanden\\Data\\Codes\\Programeren\\C++\\Projecten\\TuringLanguage\\parser/parser.parser.cc" /* yacc.c:1651  */
+#line 70 "D:\\Bestanden\\Data\\Codes\\Programeren\\C++\\Projecten\\TuringLanguage\\parser\\parser.y" /* yacc.c:1651  */
+    {(yyval.node) = new EmptyDeclNode();}
+#line 1372 "D:\\Bestanden\\Data\\Codes\\Programeren\\C++\\Projecten\\TuringLanguage\\parser/parser.parser.cc" /* yacc.c:1651  */
     break;
 
   case 5:
-#line 69 "D:\\Bestanden\\Data\\Codes\\Programeren\\C++\\Projecten\\TuringLanguage\\parser\\parser.y" /* yacc.c:1651  */
-    {(yyval.node) = new EmptyNode();}
-#line 1333 "D:\\Bestanden\\Data\\Codes\\Programeren\\C++\\Projecten\\TuringLanguage\\parser/parser.parser.cc" /* yacc.c:1651  */
+#line 75 "D:\\Bestanden\\Data\\Codes\\Programeren\\C++\\Projecten\\TuringLanguage\\parser\\parser.y" /* yacc.c:1651  */
+    {(yyval.node) = new FunctionDeclNode((yyvsp[-7].type), (yyvsp[-6].str), (ArgNode*)(yyvsp[-4].node), (StatementNode*)(yyvsp[-1].node)); delete[] (yyvsp[-6].str);}
+#line 1378 "D:\\Bestanden\\Data\\Codes\\Programeren\\C++\\Projecten\\TuringLanguage\\parser/parser.parser.cc" /* yacc.c:1651  */
     break;
 
   case 6:
-#line 70 "D:\\Bestanden\\Data\\Codes\\Programeren\\C++\\Projecten\\TuringLanguage\\parser\\parser.y" /* yacc.c:1651  */
-    {(yyval.node) = new ExpressionStatementNode((ExpressionNode*)(yyvsp[-1].node));}
-#line 1339 "D:\\Bestanden\\Data\\Codes\\Programeren\\C++\\Projecten\\TuringLanguage\\parser/parser.parser.cc" /* yacc.c:1651  */
+#line 79 "D:\\Bestanden\\Data\\Codes\\Programeren\\C++\\Projecten\\TuringLanguage\\parser\\parser.y" /* yacc.c:1651  */
+    {(yyval.node) = new EmptyArgNode();}
+#line 1384 "D:\\Bestanden\\Data\\Codes\\Programeren\\C++\\Projecten\\TuringLanguage\\parser/parser.parser.cc" /* yacc.c:1651  */
     break;
 
   case 7:
-#line 74 "D:\\Bestanden\\Data\\Codes\\Programeren\\C++\\Projecten\\TuringLanguage\\parser\\parser.y" /* yacc.c:1651  */
-    {(yyval.node) = (yyvsp[0].node);}
-#line 1345 "D:\\Bestanden\\Data\\Codes\\Programeren\\C++\\Projecten\\TuringLanguage\\parser/parser.parser.cc" /* yacc.c:1651  */
+#line 83 "D:\\Bestanden\\Data\\Codes\\Programeren\\C++\\Projecten\\TuringLanguage\\parser\\parser.y" /* yacc.c:1651  */
+    {(yyval.node) = new StatementListNode((StatementNode*)(yyvsp[-1].node), (StatementNode*)(yyvsp[0].node));}
+#line 1390 "D:\\Bestanden\\Data\\Codes\\Programeren\\C++\\Projecten\\TuringLanguage\\parser/parser.parser.cc" /* yacc.c:1651  */
     break;
 
   case 8:
-#line 75 "D:\\Bestanden\\Data\\Codes\\Programeren\\C++\\Projecten\\TuringLanguage\\parser\\parser.y" /* yacc.c:1651  */
-    {(yyval.node) = (yyvsp[0].node);}
-#line 1351 "D:\\Bestanden\\Data\\Codes\\Programeren\\C++\\Projecten\\TuringLanguage\\parser/parser.parser.cc" /* yacc.c:1651  */
+#line 84 "D:\\Bestanden\\Data\\Codes\\Programeren\\C++\\Projecten\\TuringLanguage\\parser\\parser.y" /* yacc.c:1651  */
+    {(yyval.node) = new EmptyNode();}
+#line 1396 "D:\\Bestanden\\Data\\Codes\\Programeren\\C++\\Projecten\\TuringLanguage\\parser/parser.parser.cc" /* yacc.c:1651  */
     break;
 
   case 9:
-#line 79 "D:\\Bestanden\\Data\\Codes\\Programeren\\C++\\Projecten\\TuringLanguage\\parser\\parser.y" /* yacc.c:1651  */
-    {(yyval.node) = (yyvsp[0].node);}
-#line 1357 "D:\\Bestanden\\Data\\Codes\\Programeren\\C++\\Projecten\\TuringLanguage\\parser/parser.parser.cc" /* yacc.c:1651  */
+#line 88 "D:\\Bestanden\\Data\\Codes\\Programeren\\C++\\Projecten\\TuringLanguage\\parser\\parser.y" /* yacc.c:1651  */
+    {(yyval.node) = new EmptyNode();}
+#line 1402 "D:\\Bestanden\\Data\\Codes\\Programeren\\C++\\Projecten\\TuringLanguage\\parser/parser.parser.cc" /* yacc.c:1651  */
     break;
 
   case 10:
-#line 80 "D:\\Bestanden\\Data\\Codes\\Programeren\\C++\\Projecten\\TuringLanguage\\parser\\parser.y" /* yacc.c:1651  */
-    {(yyval.node) = new AssignNode((ExpressionNode*)(yyvsp[-2].node), (ExpressionNode*)(yyvsp[0].node));}
-#line 1363 "D:\\Bestanden\\Data\\Codes\\Programeren\\C++\\Projecten\\TuringLanguage\\parser/parser.parser.cc" /* yacc.c:1651  */
+#line 89 "D:\\Bestanden\\Data\\Codes\\Programeren\\C++\\Projecten\\TuringLanguage\\parser\\parser.y" /* yacc.c:1651  */
+    {(yyval.node) = new ExpressionStatementNode((ExpressionNode*)(yyvsp[-1].node));}
+#line 1408 "D:\\Bestanden\\Data\\Codes\\Programeren\\C++\\Projecten\\TuringLanguage\\parser/parser.parser.cc" /* yacc.c:1651  */
     break;
 
   case 11:
-#line 81 "D:\\Bestanden\\Data\\Codes\\Programeren\\C++\\Projecten\\TuringLanguage\\parser\\parser.y" /* yacc.c:1651  */
-    {(yyval.node) = new AddNode((ExpressionNode*)(yyvsp[-2].node), (ExpressionNode*)(yyvsp[0].node));}
-#line 1369 "D:\\Bestanden\\Data\\Codes\\Programeren\\C++\\Projecten\\TuringLanguage\\parser/parser.parser.cc" /* yacc.c:1651  */
+#line 93 "D:\\Bestanden\\Data\\Codes\\Programeren\\C++\\Projecten\\TuringLanguage\\parser\\parser.y" /* yacc.c:1651  */
+    {(yyval.node) = (yyvsp[0].node);}
+#line 1414 "D:\\Bestanden\\Data\\Codes\\Programeren\\C++\\Projecten\\TuringLanguage\\parser/parser.parser.cc" /* yacc.c:1651  */
     break;
 
   case 12:
-#line 82 "D:\\Bestanden\\Data\\Codes\\Programeren\\C++\\Projecten\\TuringLanguage\\parser\\parser.y" /* yacc.c:1651  */
-    {(yyval.node) = (yyvsp[-1].node);}
-#line 1375 "D:\\Bestanden\\Data\\Codes\\Programeren\\C++\\Projecten\\TuringLanguage\\parser/parser.parser.cc" /* yacc.c:1651  */
+#line 94 "D:\\Bestanden\\Data\\Codes\\Programeren\\C++\\Projecten\\TuringLanguage\\parser\\parser.y" /* yacc.c:1651  */
+    {(yyval.node) = (yyvsp[0].node);}
+#line 1420 "D:\\Bestanden\\Data\\Codes\\Programeren\\C++\\Projecten\\TuringLanguage\\parser/parser.parser.cc" /* yacc.c:1651  */
     break;
 
   case 13:
-#line 86 "D:\\Bestanden\\Data\\Codes\\Programeren\\C++\\Projecten\\TuringLanguage\\parser\\parser.y" /* yacc.c:1651  */
-    {(yyval.node) = new VariableNode((yyvsp[0].str)); delete[] (yyvsp[0].str);}
-#line 1381 "D:\\Bestanden\\Data\\Codes\\Programeren\\C++\\Projecten\\TuringLanguage\\parser/parser.parser.cc" /* yacc.c:1651  */
+#line 98 "D:\\Bestanden\\Data\\Codes\\Programeren\\C++\\Projecten\\TuringLanguage\\parser\\parser.y" /* yacc.c:1651  */
+    {(yyval.node) = (yyvsp[0].node);}
+#line 1426 "D:\\Bestanden\\Data\\Codes\\Programeren\\C++\\Projecten\\TuringLanguage\\parser/parser.parser.cc" /* yacc.c:1651  */
     break;
 
   case 14:
-#line 87 "D:\\Bestanden\\Data\\Codes\\Programeren\\C++\\Projecten\\TuringLanguage\\parser\\parser.y" /* yacc.c:1651  */
-    {(yyval.node) = (yyvsp[-1].node);}
-#line 1387 "D:\\Bestanden\\Data\\Codes\\Programeren\\C++\\Projecten\\TuringLanguage\\parser/parser.parser.cc" /* yacc.c:1651  */
+#line 99 "D:\\Bestanden\\Data\\Codes\\Programeren\\C++\\Projecten\\TuringLanguage\\parser\\parser.y" /* yacc.c:1651  */
+    {(yyval.node) = new AssignNode((ExpressionNode*)(yyvsp[-2].node), (ExpressionNode*)(yyvsp[0].node));}
+#line 1432 "D:\\Bestanden\\Data\\Codes\\Programeren\\C++\\Projecten\\TuringLanguage\\parser/parser.parser.cc" /* yacc.c:1651  */
     break;
 
   case 15:
-#line 91 "D:\\Bestanden\\Data\\Codes\\Programeren\\C++\\Projecten\\TuringLanguage\\parser\\parser.y" /* yacc.c:1651  */
-    {(yyval.node) = (yyvsp[0].node);}
-#line 1393 "D:\\Bestanden\\Data\\Codes\\Programeren\\C++\\Projecten\\TuringLanguage\\parser/parser.parser.cc" /* yacc.c:1651  */
+#line 100 "D:\\Bestanden\\Data\\Codes\\Programeren\\C++\\Projecten\\TuringLanguage\\parser\\parser.y" /* yacc.c:1651  */
+    {(yyval.node) = new AddNode((ExpressionNode*)(yyvsp[-2].node), (ExpressionNode*)(yyvsp[0].node));}
+#line 1438 "D:\\Bestanden\\Data\\Codes\\Programeren\\C++\\Projecten\\TuringLanguage\\parser/parser.parser.cc" /* yacc.c:1651  */
     break;
 
   case 16:
-#line 95 "D:\\Bestanden\\Data\\Codes\\Programeren\\C++\\Projecten\\TuringLanguage\\parser\\parser.y" /* yacc.c:1651  */
-    {(yyval.node) = new IntegerNode((yyvsp[0].integer));}
-#line 1399 "D:\\Bestanden\\Data\\Codes\\Programeren\\C++\\Projecten\\TuringLanguage\\parser/parser.parser.cc" /* yacc.c:1651  */
+#line 101 "D:\\Bestanden\\Data\\Codes\\Programeren\\C++\\Projecten\\TuringLanguage\\parser\\parser.y" /* yacc.c:1651  */
+    {(yyval.node) = (yyvsp[-1].node);}
+#line 1444 "D:\\Bestanden\\Data\\Codes\\Programeren\\C++\\Projecten\\TuringLanguage\\parser/parser.parser.cc" /* yacc.c:1651  */
     break;
 
   case 17:
-#line 96 "D:\\Bestanden\\Data\\Codes\\Programeren\\C++\\Projecten\\TuringLanguage\\parser\\parser.y" /* yacc.c:1651  */
-    {(yyval.node) = new BoolNode(true);}
-#line 1405 "D:\\Bestanden\\Data\\Codes\\Programeren\\C++\\Projecten\\TuringLanguage\\parser/parser.parser.cc" /* yacc.c:1651  */
+#line 105 "D:\\Bestanden\\Data\\Codes\\Programeren\\C++\\Projecten\\TuringLanguage\\parser\\parser.y" /* yacc.c:1651  */
+    {(yyval.node) = new VariableNode((yyvsp[0].str)); delete[] (yyvsp[0].str);}
+#line 1450 "D:\\Bestanden\\Data\\Codes\\Programeren\\C++\\Projecten\\TuringLanguage\\parser/parser.parser.cc" /* yacc.c:1651  */
     break;
 
   case 18:
-#line 97 "D:\\Bestanden\\Data\\Codes\\Programeren\\C++\\Projecten\\TuringLanguage\\parser\\parser.y" /* yacc.c:1651  */
+#line 106 "D:\\Bestanden\\Data\\Codes\\Programeren\\C++\\Projecten\\TuringLanguage\\parser\\parser.y" /* yacc.c:1651  */
+    {(yyval.node) = (yyvsp[-1].node);}
+#line 1456 "D:\\Bestanden\\Data\\Codes\\Programeren\\C++\\Projecten\\TuringLanguage\\parser/parser.parser.cc" /* yacc.c:1651  */
+    break;
+
+  case 19:
+#line 110 "D:\\Bestanden\\Data\\Codes\\Programeren\\C++\\Projecten\\TuringLanguage\\parser\\parser.y" /* yacc.c:1651  */
+    {(yyval.node) = (yyvsp[0].node);}
+#line 1462 "D:\\Bestanden\\Data\\Codes\\Programeren\\C++\\Projecten\\TuringLanguage\\parser/parser.parser.cc" /* yacc.c:1651  */
+    break;
+
+  case 20:
+#line 114 "D:\\Bestanden\\Data\\Codes\\Programeren\\C++\\Projecten\\TuringLanguage\\parser\\parser.y" /* yacc.c:1651  */
+    {(yyval.node) = new IntegerNode((yyvsp[0].integer));}
+#line 1468 "D:\\Bestanden\\Data\\Codes\\Programeren\\C++\\Projecten\\TuringLanguage\\parser/parser.parser.cc" /* yacc.c:1651  */
+    break;
+
+  case 21:
+#line 115 "D:\\Bestanden\\Data\\Codes\\Programeren\\C++\\Projecten\\TuringLanguage\\parser\\parser.y" /* yacc.c:1651  */
+    {(yyval.node) = new BoolNode(true);}
+#line 1474 "D:\\Bestanden\\Data\\Codes\\Programeren\\C++\\Projecten\\TuringLanguage\\parser/parser.parser.cc" /* yacc.c:1651  */
+    break;
+
+  case 22:
+#line 116 "D:\\Bestanden\\Data\\Codes\\Programeren\\C++\\Projecten\\TuringLanguage\\parser\\parser.y" /* yacc.c:1651  */
     {(yyval.node) = new BoolNode(false);}
-#line 1411 "D:\\Bestanden\\Data\\Codes\\Programeren\\C++\\Projecten\\TuringLanguage\\parser/parser.parser.cc" /* yacc.c:1651  */
+#line 1480 "D:\\Bestanden\\Data\\Codes\\Programeren\\C++\\Projecten\\TuringLanguage\\parser/parser.parser.cc" /* yacc.c:1651  */
+    break;
+
+  case 23:
+#line 120 "D:\\Bestanden\\Data\\Codes\\Programeren\\C++\\Projecten\\TuringLanguage\\parser\\parser.y" /* yacc.c:1651  */
+    {(yyval.type) = new DataType(BaseType::U32);}
+#line 1486 "D:\\Bestanden\\Data\\Codes\\Programeren\\C++\\Projecten\\TuringLanguage\\parser/parser.parser.cc" /* yacc.c:1651  */
+    break;
+
+  case 24:
+#line 124 "D:\\Bestanden\\Data\\Codes\\Programeren\\C++\\Projecten\\TuringLanguage\\parser\\parser.y" /* yacc.c:1651  */
+    {(yyval.type) = (yyvsp[0].type);}
+#line 1492 "D:\\Bestanden\\Data\\Codes\\Programeren\\C++\\Projecten\\TuringLanguage\\parser/parser.parser.cc" /* yacc.c:1651  */
+    break;
+
+  case 25:
+#line 125 "D:\\Bestanden\\Data\\Codes\\Programeren\\C++\\Projecten\\TuringLanguage\\parser\\parser.y" /* yacc.c:1651  */
+    {(yyval.type) = new DataType(BaseType::VOID);}
+#line 1498 "D:\\Bestanden\\Data\\Codes\\Programeren\\C++\\Projecten\\TuringLanguage\\parser/parser.parser.cc" /* yacc.c:1651  */
     break;
 
 
-#line 1415 "D:\\Bestanden\\Data\\Codes\\Programeren\\C++\\Projecten\\TuringLanguage\\parser/parser.parser.cc" /* yacc.c:1651  */
+#line 1502 "D:\\Bestanden\\Data\\Codes\\Programeren\\C++\\Projecten\\TuringLanguage\\parser/parser.parser.cc" /* yacc.c:1651  */
       default: break;
     }
   /* User semantic actions sometimes alter yychar, and that requires
@@ -1639,7 +1726,7 @@ yyreturn:
 #endif
   return yyresult;
 }
-#line 100 "D:\\Bestanden\\Data\\Codes\\Programeren\\C++\\Projecten\\TuringLanguage\\parser\\parser.y" /* yacc.c:1910  */
+#line 128 "D:\\Bestanden\\Data\\Codes\\Programeren\\C++\\Projecten\\TuringLanguage\\parser\\parser.y" /* yacc.c:1910  */
 
 
 void parser_yyerror(parse_info* x, const char* msg)
