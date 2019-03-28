@@ -5,6 +5,7 @@
 #include <cstdint>
 
 class TreeNode;
+class GlobalDeclNode;
 class DataType;
 
 union YYSTYPE
@@ -24,7 +25,7 @@ struct parse_info
     uint64_t line;
     uint64_t errors;
     std::string parse_str;
-    TreeNode* root;
+    GlobalDeclNode* root;
 };
 
 extern "C" int parser_yylex(YYSTYPE*, void*);

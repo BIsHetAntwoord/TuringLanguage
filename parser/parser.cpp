@@ -17,7 +17,7 @@ Parser::~Parser()
     std::fclose(this->input);
 }
 
-TreeNode* Parser::parse()
+GlobalDeclNode* Parser::parse()
 {
     parse_info info;
     info.errors = 0;

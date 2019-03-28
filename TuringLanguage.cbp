@@ -38,9 +38,13 @@
 		<Unit filename="error/exceptions.inl" />
 		<Unit filename="intcode/datatype.cpp" />
 		<Unit filename="intcode/datatype.hpp" />
+		<Unit filename="intcode/declaration.cpp" />
+		<Unit filename="intcode/declaration.hpp" />
 		<Unit filename="intcode/intgenerate.cpp" />
 		<Unit filename="intcode/intgenerate.hpp" />
+		<Unit filename="intcode/intinstr.cpp" />
 		<Unit filename="intcode/intinstr.hpp" />
+		<Unit filename="intcode/intinstr.inl" />
 		<Unit filename="intcode/semantics.cpp" />
 		<Unit filename="intcode/symbol.cpp" />
 		<Unit filename="intcode/symbol.hpp" />
@@ -60,6 +64,11 @@
 			<Option weight="49" />
 		</Unit>
 		<Unit filename="parser/parser_info.hpp" />
+		<Unit filename="turing/generator.cpp" />
+		<Unit filename="turing/generator.hpp" />
+		<Unit filename="turing/state.cpp" />
+		<Unit filename="turing/state.hpp" />
+		<Unit filename="utils/constructs.hpp" />
 		<Extensions>
 			<code_completion />
 			<envvars />

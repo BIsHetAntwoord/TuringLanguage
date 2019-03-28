@@ -4,18 +4,25 @@
 #include "intcode/datatype.hpp"
 
 #include <memory>
+#include <string>
 
 class Symbol
 {
     private:
         std::unique_ptr<DataType> type;
+        std::string name;
     public:
-        Symbol(DataType*);
+        Symbol(DataType*, const std::string&);
         ~Symbol() = default;
 
         inline DataType* getType() const
         {
             return this->type.get();
+        }
+
+        inline std::string getName() const
+        {
+            return this->name;
         }
 };
 

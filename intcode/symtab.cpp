@@ -17,7 +17,7 @@ Symbol* Scope::declareSymbol(const std::string& symb, DataType* type)
 {
     if(this->getSymbol(symb) != nullptr)
         return nullptr;
-    this->symbols[symb] = new Symbol(type->copy());
+    this->symbols[symb] = new Symbol(type->copy(), symb);
     return this->symbols[symb];
 }
 

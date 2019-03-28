@@ -126,25 +126,26 @@ IntInstr* AddNode::generate(compile_info& info) const
 
 IntInstr* VariableNode::generate(compile_info& info) const
 {
-
+    return new SymbolIntInstr(Opcode::SYMB_ADDR, this->symbol);
 }
 
 IntInstr* DeclarationNode::generate(compile_info& info) const
 {
-
+    return new SymbolIntInstr(Opcode::SYMB_ADDR, this->symbol);
 }
 
 IntInstr* IntegerNode::generate(compile_info& info) const
 {
-
+    return new OperandIntInstr<uint32_t>(Opcode::PUSH_U32, this->value);
 }
 
 IntInstr* BoolNode::generate(compile_info& info) const
 {
-
+    return new OperandIntInstr<bool>(Opcode::PUSH_BOOL, this->value);
 }
 
 IntInstr* ReferenceAccessNode::generate(compile_info& info) const
 {
-
+    std::unique_ptr<IntInstr> op_code(this->op->generate(info));
+    return concat(new SizeIntInstr(Opcode::READ, this->getType()->size()), op_code.release());
 }

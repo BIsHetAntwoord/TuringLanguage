@@ -4,7 +4,7 @@
 #include <string>
 #include <cstdio>
 
-class TreeNode;
+class GlobalDeclNode;
 
 class Parser
 {
@@ -15,7 +15,7 @@ class Parser
         Parser(FILE*);
         ~Parser();
 
-        TreeNode* parse();
+        GlobalDeclNode* parse();
 };
 
 #endif // PARSER_HPP_INCLUDED

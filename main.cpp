@@ -4,6 +4,8 @@
 #include "error/exceptions.hpp"
 #include "intcode/intinstr.hpp"
 #include "intcode/intgenerate.hpp"
+#include "intcode/declaration.hpp"
+#include "turing/generator.hpp"
 
 #include <iostream>
 
@@ -19,15 +21,27 @@ int main(int argc, char* argv[])
     {
         Parser parser(argv[1]);
 
-        TreeNode* node = parser.parse();
+        GlobalDeclNode* node = parser.parse();
         if(node != nullptr)
         {
             SymbolTable symtab;
+            std::cout << "Syntax tree:" << std::endl;
             node->semanticCheck(&symtab);
             node->print(std::cout);
+            std::cout << std::endl;
 
             compile_info info;
-            node->generate(info);
+            std::cout << "Bytecode declarations:" << std::endl;
+            auto x = node->generateDecl(info);
+
+            for(auto& decl : x)
+            {
+                std::cout << "Declaration: " << decl->getName() << std::endl;
+                decl->getContent()->print(std::cout);
+            }
+
+            TuringGenerator gen(x);
+            gen.generate();
         }
     }
     catch(CompilerException& e)

@@ -1,19 +1,21 @@
 # depslib dependency file v1.0
-1553768004 source:d:\bestanden\data\codes\programeren\c++\projecten\turinglanguage\main.cpp
+1553780040 source:d:\bestanden\data\codes\programeren\c++\projecten\turinglanguage\main.cpp
 	"parser/parser.hpp"
 	"intcode/treenode.hpp"
 	"intcode/symtab.hpp"
 	"error/exceptions.hpp"
 	"intcode/intinstr.hpp"
 	"intcode/intgenerate.hpp"
+	"intcode/declaration.hpp"
+	"turing/generator.hpp"
 	<iostream>
 
-1553596886 source:d:\bestanden\data\codes\programeren\c++\projecten\turinglanguage\parser\parser.y
+1553778261 source:d:\bestanden\data\codes\programeren\c++\projecten\turinglanguage\parser\parser.y
 	"parser/parser_info.hpp"
 	"intcode/treenode.hpp"
 	<iostream>
 
-1553519193 d:\bestanden\data\codes\programeren\c++\projecten\turinglanguage\parser\parser_info.hpp
+1553778251 d:\bestanden\data\codes\programeren\c++\projecten\turinglanguage\parser\parser_info.hpp
 	<string>
 	<cstdint>
 
@@ -31,14 +33,14 @@
 	"parser/parser.parser.hh"
 	<cstring>
 
-1553771804 d:\bestanden\data\codes\programeren\c++\projecten\turinglanguage\parser\parser.parser.hh
+1553778263 d:\bestanden\data\codes\programeren\c++\projecten\turinglanguage\parser\parser.parser.hh
 
-1550150028 source:d:\bestanden\data\codes\programeren\c++\projecten\turinglanguage\parser\parser.cpp
+1553778227 source:d:\bestanden\data\codes\programeren\c++\projecten\turinglanguage\parser\parser.cpp
 	"parser/parser.hpp"
 	"error/exceptions.hpp"
 	"parser/parser_info.hpp"
 
-1549884349 d:\bestanden\data\codes\programeren\c++\projecten\turinglanguage\parser\parser.hpp
+1553778060 d:\bestanden\data\codes\programeren\c++\projecten\turinglanguage\parser\parser.hpp
 	<string>
 	<cstdio>
 
@@ -55,32 +57,33 @@
 	"intcode/symtab.hpp"
 	<iostream>
 
-1553772093 source:d:\bestanden\data\codes\programeren\c++\projecten\turinglanguage\intcode\datatype.cpp
+1553773515 source:d:\bestanden\data\codes\programeren\c++\projecten\turinglanguage\intcode\datatype.cpp
 	"intcode/datatype.hpp"
 	<iostream>
 
 1553600741 d:\bestanden\data\codes\programeren\c++\projecten\turinglanguage\intcode\symtab.hpp
 	<unordered_map>
 
-1553694677 source:d:\bestanden\data\codes\programeren\c++\projecten\turinglanguage\intcode\symtab.cpp
+1553777672 source:d:\bestanden\data\codes\programeren\c++\projecten\turinglanguage\intcode\symtab.cpp
 	"intcode/symtab.hpp"
 	"intcode/symbol.hpp"
 	"intcode/datatype.hpp"
 
-1553600438 d:\bestanden\data\codes\programeren\c++\projecten\turinglanguage\intcode\symbol.hpp
+1553777658 d:\bestanden\data\codes\programeren\c++\projecten\turinglanguage\intcode\symbol.hpp
 	"intcode/datatype.hpp"
 	<memory>
+	<string>
 
-1553600430 source:d:\bestanden\data\codes\programeren\c++\projecten\turinglanguage\intcode\symbol.cpp
+1553777528 source:d:\bestanden\data\codes\programeren\c++\projecten\turinglanguage\intcode\symbol.cpp
 	"intcode/symbol.hpp"
 
-1553696585 source:d:\bestanden\data\codes\programeren\c++\projecten\turinglanguage\intcode\semantics.cpp
+1553772711 source:d:\bestanden\data\codes\programeren\c++\projecten\turinglanguage\intcode\semantics.cpp
 	"intcode/treenode.hpp"
 	"error/exceptions.hpp"
 	"intcode/symtab.hpp"
 	"intcode/symbol.hpp"
 
-1553773417 source:d:\bestanden\data\codes\programeren\c++\projecten\turinglanguage\intcode\intgenerate.cpp
+1553779652 source:d:\bestanden\data\codes\programeren\c++\projecten\turinglanguage\intcode\intgenerate.cpp
 	"intcode/intgenerate.hpp"
 	"intcode/treenode.hpp"
 	"intcode/intinstr.hpp"
@@ -90,10 +93,12 @@
 
 1553697168 d:\bestanden\data\codes\programeren\c++\projecten\turinglanguage\intcode\intgenerate.hpp
 
-1553773312 d:\bestanden\data\codes\programeren\c++\projecten\turinglanguage\intcode\intinstr.hpp
+1553777604 d:\bestanden\data\codes\programeren\c++\projecten\turinglanguage\intcode\intinstr.hpp
 	<cstddef>
+	<iosfwd>
+	"intcode/intinstr.inl"
 
-1553769793 d:\bestanden\data\codes\programeren\c++\projecten\turinglanguage\intcode\declaration.hpp
+1553778213 d:\bestanden\data\codes\programeren\c++\projecten\turinglanguage\intcode\declaration.hpp
 	<string>
 	<memory>
 
@@ -102,8 +107,24 @@
 	"intcode/datatype.hpp"
 	"intcode/intinstr.hpp"
 
-1553772269 source:d:\bestanden\data\codes\programeren\c++\projecten\turinglanguage\intcode\intinstr.cpp
+1553778773 source:d:\bestanden\data\codes\programeren\c++\projecten\turinglanguage\intcode\intinstr.cpp
 	"intcode/intinstr.hpp"
+	"intcode/symbol.hpp"
+	<iostream>
 
 1553772980 d:\bestanden\data\codes\programeren\c++\projecten\turinglanguage\utils\constructs.hpp
+
+1553778778 d:\bestanden\data\codes\programeren\c++\projecten\turinglanguage\intcode\intinstr.inl
+	<iostream>
+
+1553781955 d:\bestanden\data\codes\programeren\c++\projecten\turinglanguage\turing\generator.hpp
+	<vector>
+	<memory>
+	<unordered_map>
+	"turing/state.hpp"
+
+1553782100 d:\bestanden\data\codes\programeren\c++\projecten\turinglanguage\turing\state.hpp
+
+1553780898 source:d:\bestanden\data\codes\programeren\c++\projecten\turinglanguage\turing\generator.cpp
+	"turing/generator.hpp"
 

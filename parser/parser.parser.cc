@@ -1360,7 +1360,7 @@ yyreduce:
     {
         case 2:
 #line 66 "D:\\Bestanden\\Data\\Codes\\Programeren\\C++\\Projecten\\TuringLanguage\\parser\\parser.y" /* yacc.c:1651  */
-    {x->root = (yyvsp[0].node);}
+    {x->root = (GlobalDeclNode*)(yyvsp[0].node);}
 #line 1365 "D:\\Bestanden\\Data\\Codes\\Programeren\\C++\\Projecten\\TuringLanguage\\parser/parser.parser.cc" /* yacc.c:1651  */
     break;
 

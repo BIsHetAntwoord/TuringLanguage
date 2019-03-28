@@ -63,7 +63,7 @@
 %%
 
 root
-    : global_decl_list                                                  {x->root = $1;}
+    : global_decl_list                                                  {x->root = (GlobalDeclNode*)$1;}
     ;
 
 global_decl_list

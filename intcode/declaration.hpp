@@ -16,6 +16,16 @@ class Declaration
     public:
         Declaration(const std::string&, DataType*, IntInstr*);
         ~Declaration() = default;
+
+        inline std::string getName() const
+        {
+            return this->name;
+        }
+
+        inline IntInstr* getContent() const
+        {
+            return this->content.get();
+        }
 };
 
 #endif // INTCODE_DECLARATION_HPP_INCLUDED
