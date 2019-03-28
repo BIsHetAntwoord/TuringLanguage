@@ -1,17 +1,7 @@
 #include "intcode/treenode.hpp"
-#include "error/exceptions.hpp"
+#include "intcode/symtab.hpp"
 
-template <typename T>
-void resolve_rvalue(std::unique_ptr<T>& node)
-{
-    const DataType* current_type = node->getType();
-    if(current_type->getBaseType() == BaseType::REFERENCE)
-    {
-        T* raw_ptr = node.get();
-        node.release();
-        node = std::make_unique<T>(new ReferenceAccessNode(raw_ptr));
-    }
-}
+#include <iostream>
 
 //Constructors
 GlobalDeclListNode::GlobalDeclListNode(GlobalDeclNode* lop, GlobalDeclNode* rop) : lop(lop), rop(rop) {}
@@ -30,90 +20,125 @@ AddNode::AddNode(ExpressionNode* lop, ExpressionNode* rop) : lop(lop), rop(rop) 
 
 VariableNode::VariableNode(const std::string& name) : name(name) {}
 
+DeclarationNode::DeclarationNode(DataType* type, const std::string& name) : name(name), var_type(type) {}
+
 IntegerNode::IntegerNode(uint32_t value) : value(value) {}
 
 BoolNode::BoolNode(bool value) : value(value) {}
 
-//Semantic checking
-void GlobalDeclListNode::semanticCheck(SymbolTable* symb)
+ReferenceAccessNode::ReferenceAccessNode(ExpressionNode* op) : op(op)
 {
-    this->lop->semanticCheck(symb);
-    this->rop->semanticCheck(symb);
+    this->type = std::unique_ptr<DataType>(op->getType()->getSubType()->copy());
 }
 
-void EmptyDeclNode::semanticCheck(SymbolTable* symb)
+//Print
+void print_indent(std::ostream& os, size_t level)
 {
-
+    for(size_t i = 0; i < level; ++i)
+        os << "    ";
 }
 
-void FunctionDeclNode::semanticCheck(SymbolTable* symb)
+void GlobalDeclListNode::print(std::ostream& os, size_t level) const
 {
-    //Functions should already be in the semantic table
-    this->args->semanticCheck(symb);
-    this->content->semanticCheck(symb);
+    print_indent(os, level);
+
+    os << "global declaration:" << std::endl;
+    this->lop->print(os, level+1);
+    this->rop->print(os, level+1);
 }
 
-void ArgListNode::semanticCheck(SymbolTable* symb)
+void EmptyDeclNode::print(std::ostream& os, size_t level) const
 {
-    this->prev_args->semanticCheck(symb);
-    this->next_args->semanticCheck(symb);
+    print_indent(os, level);
+    os << "empty declaration" << std::endl;
 }
 
-void EmptyArgNode::semanticCheck(SymbolTable* symb)
+void FunctionDeclNode::print(std::ostream& os, size_t level) const
 {
-
+    print_indent(os, level);
+    os << "function declaration (" << this->name << " -> " << *this->rettype << "):" << std::endl;
+    this->args->print(os, level+1);
+    this->content->print(os, level+1);
 }
 
-void EmptyNode::semanticCheck(SymbolTable* symb)
+void ArgListNode::print(std::ostream& os, size_t level) const
 {
-
+    print_indent(os, level);
+    os << "argument list:"<< std::endl;
+    this->prev_args->print(os, level+1);
+    this->next_args->print(os, level+1);
 }
 
-void StatementListNode::semanticCheck(SymbolTable* symb)
+void EmptyArgNode::print(std::ostream& os, size_t level) const
 {
-    this->lop->semanticCheck(symb);
-    this->rop->semanticCheck(symb);
+    print_indent(os, level);
+    os << "empty argument" << std::endl;
 }
 
-void ExpressionStatementNode::semanticCheck(SymbolTable* symb)
+void EmptyNode::print(std::ostream& os, size_t level) const
 {
-    this->op->semanticCheck(symb);
+    print_indent(os, level);
+    os << "empty statement" << std::endl;
 }
 
-
-void AssignNode::semanticCheck(SymbolTable* symb)
+void StatementListNode::print(std::ostream& os, size_t level) const
 {
-    this->lop->semanticCheck(symb);
-    this->rop->semanticCheck(symb);
-
-    resolve_rvalue(this->rop);
-
-    //Assert we can assign
-    const DataType* lop_type = this->lop->getType();
-    const DataType* rop_type = this->rop->getType();
-
-    if(lop_type->getBaseType() != BaseType::REFERENCE)
-        throw TypeCheckException("Assignment to non-lvalue type: ", *lop_type, " from ", *rop_type);
-
-    const DataType* lop_subtype = lop_type->getSubType();
-    if(*lop_subtype != *rop_type)
-        throw TypeCheckException("Invalid conversion from ", *rop_type, " to ", *lop_subtype, " for assignment");
-
-    //Generate the return type
-    this->type = std::make_unique(lop_type->copy());
+    print_indent(os, level);
+    os << "statement list:" << std::endl;
+    this->lop->print(os, level+1);
+    this->rop->print(os, level+1);
 }
 
-void AddNode::semanticCheck(SymbolTable* symb)
+void ExpressionStatementNode::print(std::ostream& os, size_t level) const
 {
-    this->lop->semanticCheck(symb);
-    this->rop->semanticCheck(symb);
-
-    const DataType* lop_type = this->lop->getType();
-    const DataType* rop_type = this->rop->getType();
-
-    if(*lop_type != *rop_type)
-        throw TypeCheckException("Invalid addition between ", *lop_type, " and ", *rop_type);
-
-    this->type = std::make_unique(lop_type->copy());
+    print_indent(os, level);
+    os << "expression statement:" << std::endl;
+    this->op->print(os, level+1);
 }
 
+void AssignNode::print(std::ostream& os, size_t level) const
+{
+    print_indent(os, level);
+    os << "assignment -> " << *this->type << ":" << std::endl;
+    this->lop->print(os, level+1);
+    this->rop->print(os, level+1);
+}
+
+void AddNode::print(std::ostream& os, size_t level) const
+{
+    print_indent(os, level);
+    os << "addition -> " << *this->type << ":" << std::endl;
+    this->lop->print(os, level+1);
+    this->rop->print(os, level+1);
+}
+
+void VariableNode::print(std::ostream& os, size_t level) const
+{
+    print_indent(os, level);
+    os << "variable (" << this->name << ") -> " << *this->type << std::endl;
+}
+
+void DeclarationNode::print(std::ostream& os, size_t level) const
+{
+    print_indent(os, level);
+    os << "variable declaration (" << this->name << " -> " << *this->var_type << ") -> " << *this->type << std::endl;
+}
+
+void IntegerNode::print(std::ostream& os, size_t level) const
+{
+    print_indent(os, level);
+    os << "integer constant (" << this->value << ") -> " << *this->type << std::endl;
+}
+
+void BoolNode::print(std::ostream& os, size_t level) const
+{
+    print_indent(os, level);
+    os << "boolean constant (" << (this->value ? "true" : "false") << ") -> " << *this->type << std::endl;
+}
+
+void ReferenceAccessNode::print(std::ostream& os, size_t level) const
+{
+    print_indent(os, level);
+    os << "reference access -> " << *this->type << ":" << std::endl;
+    this->op->print(os, level+1);
+}

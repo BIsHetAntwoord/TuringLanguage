@@ -16,4 +16,7 @@ template <typename... Args>
 ParseException::ParseException(Args&&... args) : CompilerException(std::forward<Args>(args)...) {}
 
 template <typename... Args>
-TypeCheckException::TypeCheckException(Args&&... args) : CompilerException(std::forward<Args>(args)...) {}
+SemanticException::SemanticException(Args&&... args) : CompilerException(std::forward<Args>(args)...) {}
+
+template <typename... Args>
+TypeCheckException::TypeCheckException(Args&&... args) : SemanticException(std::forward<Args>(args)...) {}

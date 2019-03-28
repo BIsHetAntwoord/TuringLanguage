@@ -40,6 +40,7 @@ IDENTIFIER {IDCHAR}({IDCHAR}|{DIGIT})*
 
 <INITIAL>
 {
+    "bool"                                                                  {return KEYW_BOOL;}
     "false"                                                                 {return KEYW_FALSE;}
     "true"                                                                  {return KEYW_TRUE;}
     "u32"                                                                   {return KEYW_U32;}

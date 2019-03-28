@@ -11,6 +11,7 @@
 				<Option object_output="obj/Debug/" />
 				<Option type="1" />
 				<Option compiler="gcc" />
+				<Option parameters="tests/test.tl" />
 				<Compiler>
 					<Add option="-g" />
 				</Compiler>
@@ -37,6 +38,14 @@
 		<Unit filename="error/exceptions.inl" />
 		<Unit filename="intcode/datatype.cpp" />
 		<Unit filename="intcode/datatype.hpp" />
+		<Unit filename="intcode/intgenerate.cpp" />
+		<Unit filename="intcode/intgenerate.hpp" />
+		<Unit filename="intcode/intinstr.hpp" />
+		<Unit filename="intcode/semantics.cpp" />
+		<Unit filename="intcode/symbol.cpp" />
+		<Unit filename="intcode/symbol.hpp" />
+		<Unit filename="intcode/symtab.cpp" />
+		<Unit filename="intcode/symtab.hpp" />
 		<Unit filename="intcode/treenode.cpp" />
 		<Unit filename="intcode/treenode.hpp" />
 		<Unit filename="main.cpp" />

@@ -3,10 +3,18 @@
 
 #include "intcode/datatype.hpp"
 
+#include <iosfwd>
+#include <vector>
+
 class StatementNode;
 class ArgNode;
 class ExpressionNode;
 class SymbolTable;
+class Symbol;
+class Scope;
+struct compile_info;
+class IntInstr;
+class Declaration;
 
 class TreeNode
 {
@@ -14,12 +22,16 @@ class TreeNode
         virtual ~TreeNode() = default;
 
         virtual void semanticCheck(SymbolTable*) = 0;
+        virtual void print(std::ostream&, size_t = 0) const = 0;
+        virtual IntInstr* generate(compile_info&) const = 0;
 };
 
 class GlobalDeclNode : public TreeNode
 {
     public:
         virtual ~GlobalDeclNode() = default;
+
+        virtual std::vector<std::unique_ptr<Declaration>> generateDecl(compile_info&) const = 0;
 };
 
 class GlobalDeclListNode : public GlobalDeclNode
@@ -32,6 +44,9 @@ class GlobalDeclListNode : public GlobalDeclNode
         virtual ~GlobalDeclListNode() = default;
 
         virtual void semanticCheck(SymbolTable*);
+        virtual void print(std::ostream&, size_t) const;
+        virtual IntInstr* generate(compile_info&) const;
+        virtual std::vector<std::unique_ptr<Declaration>> generateDecl(compile_info&) const;
 };
 
 class EmptyDeclNode : public GlobalDeclNode
@@ -41,6 +56,9 @@ class EmptyDeclNode : public GlobalDeclNode
         virtual ~EmptyDeclNode() = default;
 
         virtual void semanticCheck(SymbolTable*);
+        virtual void print(std::ostream&, size_t) const;
+        virtual IntInstr* generate(compile_info&) const;
+        virtual std::vector<std::unique_ptr<Declaration>> generateDecl(compile_info&) const;
 };
 
 class FunctionDeclNode : public GlobalDeclNode
@@ -50,11 +68,15 @@ class FunctionDeclNode : public GlobalDeclNode
         std::unique_ptr<DataType> rettype;
         std::unique_ptr<ArgNode> args;
         std::unique_ptr<StatementNode> content;
+        std::unique_ptr<Scope> func_scope;
     public:
         FunctionDeclNode(DataType*, const std::string&, ArgNode*, StatementNode*);
         virtual ~FunctionDeclNode() = default;
 
         virtual void semanticCheck(SymbolTable*);
+        virtual void print(std::ostream&, size_t) const;
+        virtual IntInstr* generate(compile_info&) const;
+        virtual std::vector<std::unique_ptr<Declaration>> generateDecl(compile_info&) const;
 };
 
 class ArgNode : public TreeNode
@@ -73,6 +95,8 @@ class ArgListNode : public ArgNode
         virtual ~ArgListNode() = default;
 
         virtual void semanticCheck(SymbolTable*);
+        virtual void print(std::ostream&, size_t) const;
+        virtual IntInstr* generate(compile_info&) const;
 };
 
 class EmptyArgNode : public ArgNode
@@ -82,6 +106,8 @@ class EmptyArgNode : public ArgNode
         virtual ~EmptyArgNode() = default;
 
         virtual void semanticCheck(SymbolTable*);
+        virtual void print(std::ostream&, size_t) const;
+        virtual IntInstr* generate(compile_info&) const;
 };
 
 class StatementNode : public TreeNode
@@ -97,6 +123,8 @@ class EmptyNode : public StatementNode
         virtual ~EmptyNode() = default;
 
         virtual void semanticCheck(SymbolTable*);
+        virtual void print(std::ostream&, size_t) const;
+        virtual IntInstr* generate(compile_info&) const;
 };
 
 class StatementListNode : public StatementNode
@@ -107,9 +135,11 @@ class StatementListNode : public StatementNode
     public:
         StatementListNode(StatementNode*, StatementNode*);
 
-        virtual ~StatementListNode();
+        virtual ~StatementListNode() = default;
 
         virtual void semanticCheck(SymbolTable*);
+        virtual void print(std::ostream&, size_t) const;
+        virtual IntInstr* generate(compile_info&) const;
 };
 
 class ExpressionStatementNode : public StatementNode
@@ -122,6 +152,8 @@ class ExpressionStatementNode : public StatementNode
         virtual ~ExpressionStatementNode() = default;
 
         virtual void semanticCheck(SymbolTable*);
+        virtual void print(std::ostream&, size_t) const;
+        virtual IntInstr* generate(compile_info&) const;
 };
 
 class ExpressionNode : public TreeNode
@@ -153,6 +185,8 @@ class AssignNode : public ExpressionNode
         virtual ~AssignNode() = default;
 
         virtual void semanticCheck(SymbolTable*);
+        virtual void print(std::ostream&, size_t) const;
+        virtual IntInstr* generate(compile_info&) const;
 };
 
 class AddNode : public ExpressionNode
@@ -166,17 +200,37 @@ class AddNode : public ExpressionNode
         virtual ~AddNode() = default;
 
         virtual void semanticCheck(SymbolTable*);
+        virtual void print(std::ostream&, size_t) const;
+        virtual IntInstr* generate(compile_info&) const;
 };
 
 class VariableNode : public ExpressionNode
 {
     private:
         std::string name;
+        Symbol* symbol = nullptr;
     public:
         VariableNode(const std::string&);
         virtual ~VariableNode() = default;
 
         virtual void semanticCheck(SymbolTable*);
+        virtual void print(std::ostream&, size_t) const;
+        virtual IntInstr* generate(compile_info&) const;
+};
+
+class DeclarationNode : public ExpressionNode
+{
+    private:
+        std::string name;
+        std::unique_ptr<DataType> var_type;
+        Symbol* symbol = nullptr;
+    public:
+        DeclarationNode(DataType*, const std::string&);
+        virtual ~DeclarationNode() = default;
+
+        virtual void semanticCheck(SymbolTable*);
+        virtual void print(std::ostream&, size_t) const;
+        virtual IntInstr* generate(compile_info&) const;
 };
 
 class IntegerNode : public ExpressionNode
@@ -188,6 +242,8 @@ class IntegerNode : public ExpressionNode
         virtual ~IntegerNode() = default;
 
         virtual void semanticCheck(SymbolTable*);
+        virtual void print(std::ostream&, size_t) const;
+        virtual IntInstr* generate(compile_info&) const;
 };
 
 class BoolNode : public ExpressionNode
@@ -199,6 +255,8 @@ class BoolNode : public ExpressionNode
         virtual ~BoolNode() = default;
 
         virtual void semanticCheck(SymbolTable*);
+        virtual void print(std::ostream&, size_t) const;
+        virtual IntInstr* generate(compile_info&) const;
 };
 
 class ReferenceAccessNode : public ExpressionNode
@@ -210,6 +268,8 @@ class ReferenceAccessNode : public ExpressionNode
         virtual ~ReferenceAccessNode() = default;
 
         virtual void semanticCheck(SymbolTable*);
+        virtual void print(std::ostream&, size_t) const;
+        virtual IntInstr* generate(compile_info&) const;
 };
 
 #endif // INTCODE_TREENODE_HPP_INCLUDED

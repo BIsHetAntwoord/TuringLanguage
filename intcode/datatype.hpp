@@ -39,6 +39,11 @@ class DataType
         }
 
         bool equals(const DataType&) const;
+        DataType* copy() const;
+        size_t size() const;
+
+        bool isPointer() const;
+        bool isArithmetic() const;
 };
 
 bool operator==(const DataType&, const DataType&);

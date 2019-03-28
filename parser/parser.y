@@ -14,6 +14,7 @@
 
 %define api.prefix {parser_yy}
 
+%token KEYW_BOOL "bool"
 %token KEYW_FALSE "false"
 %token KEYW_TRUE "true"
 %token KEYW_U32 "u32"
@@ -104,6 +105,7 @@ calc_expression
 lvalue
     : ID                                                                {$$ = new VariableNode($1); delete[] $1;}
     | OPEN_PAR lvalue CLOSE_PAR                                         {$$ = $2;}
+    | datatype ID                                                       {$$ = new DeclarationNode($1, $2); delete[] $2;}
     ;
 
 rvalue
@@ -118,6 +120,7 @@ constant
 
 datatype
     : KEYW_U32                                                          {$$ = new DataType(BaseType::U32);}
+    | KEYW_BOOL                                                         {$$ = new DataType(BaseType::BOOL);}
     ;
 
 rettype

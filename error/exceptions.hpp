@@ -21,7 +21,16 @@ class ParseException : public CompilerException
         virtual ~ParseException() = default;
 };
 
-class TypeCheckException : public CompilerException
+class SemanticException : public CompilerException
+{
+    public:
+        template <typename... Args>
+        SemanticException(Args&&...);
+
+        virtual ~SemanticException() = default;
+};
+
+class TypeCheckException : public SemanticException
 {
     public:
         template <typename... Args>
